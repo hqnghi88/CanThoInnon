@@ -32,7 +32,7 @@ global {
 		ask cell {
 			grid_value <- grid_value;
 			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
-			color <- hsb(0.5972, val*1.2, 0.9);
+			color <- hsb(0.5872, val*1.2, 1.0);
 		}
 
 				create water {
@@ -135,9 +135,9 @@ experiment show_example type: gui {
 						species water;
 			grid cell elevation: grid_value triangulation: true  refresh: false;// position: {0, 0, -0.008}
 			//						grid cell refresh: false;
-			species road refresh: false;
+			species road refresh: false position: {0, 0, 0.002};
 			species building refresh: false;
-			species people;
+			species people position: {0, 0, 0.002};
 		}
 
 		//		display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(people).location.x), int(first(people).location.y), 2.1} camera_look_pos:
