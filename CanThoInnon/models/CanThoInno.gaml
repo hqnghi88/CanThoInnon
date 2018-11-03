@@ -9,7 +9,7 @@ model geotiffimport
 global {
 //definiton of the file to import
 	file grid_data <- file('../includes/ctdem.tif');
-	file road_shp <- file("../includes/roads2.shp");
+	file road_shp <- file("../includes/roads_clean.shp");
 	file building_shp <- file("../includes/building.shp");
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(grid_data);
@@ -131,7 +131,7 @@ grid cell file: grid_data;
 
 experiment show_example type: gui {
 	output {
-		display test type: opengl {
+		display test type: opengl background:#black{
 						species water;
 			grid cell elevation: grid_value triangulation: true  refresh: false;// position: {0, 0, -0.008}
 			//						grid cell refresh: false;
