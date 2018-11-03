@@ -8,7 +8,7 @@ model geotiffimport
 
 global {
 //definiton of the file to import
-	file grid_data <- file('../includes/canthodem.tif');
+	file grid_data <- file('../includes/ctdem.tif');
 	file road_shp <- file("../includes/roads2.shp");
 	file building_shp <- file("../includes/building.shp");
 	//computation of the environment size from the geotiff file
@@ -21,18 +21,33 @@ global {
 	float min_value;
 
 	init {
+//		ask cell {
+//			grid_value <- grid_value + 33;
+//		}
+
 		max_value <- cell max_of (each.grid_value);
 		min_value <- cell min_of (each.grid_value);
 		write max_value;
 		write min_value;
 		ask cell {
-			int val <- 255 - int(255 * (1 - (grid_value - min_value) / (max_value - min_value)));
-			color <- rgb(val, val, val);
+			grid_value <- grid_value;
+			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
+			color <- hsb(0.5972, val*1.2, 0.9);
 		}
 
+				create water {
+					location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+				}
 		create road from: road_shp {
 		}
-
+		//		ask road{
+		//			loop p over:shape.points{
+		//				cell c<- cell at p;
+		//				if(c!=nil){					
+		//					p<- p add_z c.grid_value;
+		//				}
+		//			} 
+		//		}
 		the_graph <- as_edge_graph(list(road));
 		create building from: building_shp {
 			depth <- (rnd(100) / 100) * (rnd(100) / 100 * shape.width) + 10;
@@ -78,6 +93,30 @@ species road {
 
 }
 
+species water {
+	float wlevel <- -1.0;
+	int incr <- 1;
+	geometry shape <- box(world.shape.width, world.shape.height, 1);
+
+	reflex innon {
+		wlevel <- wlevel + incr * 0.05;
+		if (wlevel > 5) {
+			incr <- -1;
+		}
+
+		if (wlevel < -1.0) {
+			incr <- 1;
+		}
+
+		location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+	}
+
+	aspect default {
+		draw shape color: #blue at: location;
+	}
+
+}
+
 species building {
 	float depth;
 	file texture;
@@ -93,22 +132,23 @@ grid cell file: grid_data;
 experiment show_example type: gui {
 	output {
 		display test type: opengl {
-		//				grid cell elevation: grid_value triangulation: true refresh: false;
-			grid cell refresh: false;
+						species water;
+			grid cell elevation: grid_value triangulation: true  refresh: false;// position: {0, 0, -0.008}
+			//						grid cell refresh: false;
 			species road refresh: false;
 			species building refresh: false;
 			species people;
 		}
 
-//		display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(people).location.x), int(first(people).location.y), 2.1} camera_look_pos:
-//		{cos(first(people).heading) * first(people).speed + int(first(people).location.x), sin(first(people).heading) * first(people).speed + int(first(people).location.y), 2}
-//		camera_up_vector: {0.0, 0.0, 1.0} {
-//		//			grid cell elevation: grid_value triangulation: true refresh: false;
-//			grid cell refresh: false;
-//			species road refresh: false;
-//			species building refresh: false;
-//			species people;
-//		}
+		//		display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(people).location.x), int(first(people).location.y), 2.1} camera_look_pos:
+		//		{cos(first(people).heading) * first(people).speed + int(first(people).location.x), sin(first(people).heading) * first(people).speed + int(first(people).location.y), 2}
+		//		camera_up_vector: {0.0, 0.0, 1.0} {
+		//		//			grid cell elevation: grid_value triangulation: true refresh: false;
+		//			grid cell refresh: false;
+		//			species road refresh: false;
+		//			species building refresh: false;
+		//			species people;
+		//		}
 
 	}
 
