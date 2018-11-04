@@ -9,7 +9,7 @@ model geotiffimport
 global {
 //definiton of the file to import
 	file grid_data <- file('../includes/ctdem.tif');
-	file road_shp <- file("../includes/roads_clean.shp");
+	file road_shp <- file("../includes/roads2.shp");
 	file building_shp <- file("../includes/building.shp");
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(building_shp);
@@ -58,7 +58,7 @@ global {
 		//		}
 		road_graph <- as_edge_graph(list(road));
 		create building from: building_shp {
-			depth <- (rnd(100) / 100) * (rnd(100) / 100 * shape.width) + 10;
+			depth <-   (rnd(100) / 100 * shape.width) ;
 			texture <- textures[rnd(9)];
 		}
 
@@ -78,7 +78,7 @@ species vehicle skills: [moving] {
 	int nb_people;
 	float wsize <- 5.0 + rnd(2);
 	float hsize <- 2.0 + rnd(2);
-	float sp <- 2 + rnd(40.0);
+	float sp <- 10 + rnd(40.0);
 	float csp <- sp;
 	//	float ccsp <- csp;
 	float perception_distance <- wsize * 2;
