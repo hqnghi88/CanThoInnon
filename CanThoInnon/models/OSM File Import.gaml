@@ -10,8 +10,8 @@ model simpleOSMLoading
 global {
 
 //map used to filter the object to build from the OSM file according to attributes. for an exhaustive list, see: http://wiki.openstreetmap.org/wiki/Map_Features
-	map filtering <- map(["tourism"::["yes"], "building"::["yes"], "office"::["yes"], "shop"::["yes"]]);
-//	map filtering <- map(["highway"::["yes"]]);
+	map filtering <- map(["tourism"::["yes"], "building"::["name", "addr", "yes"], "office"::["yes"], "shop"::["yes"]]);
+	//	map filtering <- map(["highway"::["yes"]]);
 	//OSM file to load
 	file<geometry> osmfile;
 
@@ -35,22 +35,26 @@ global {
 		//					create road with: [shape::shape, type:: tourism_str];
 		//				} else 
 			if (length(shape.points) > 1 and (building_str != nil or tourism_str != nil or office_str != nil or shop_str != nil)) {
-				create building with: [shape::shape];
+				if (name index_of "osm_agent" != 0) {
+//					write name; 
+				}
+
+				create building with: [shape::shape, osm_name::name];
 			}
 
 			//			}
 			//			do the generic agent die
-			do die;
+//			do die;
 		}
 
 		ask building[196] {
 			do die;
 		}
 
-//		ask building {
-//			write shape;
-//		}
-		save building to:"../includes/building.shp" type:shp;
+		//		ask building {
+		//			write shape;
+		//		}
+				save building attributes:["osm_name"::osm_name] to:"../includes/building.shp" type:shp;
 	}
 
 }
@@ -82,6 +86,7 @@ species node_agent {
 }
 
 species building {
+	string osm_name;
 
 	aspect default {
 		draw shape color: #red;
@@ -102,6 +107,6 @@ experiment "Load OSM" type: gui {
 
 }
 
-experiment "Load OSM from Internet" type: gui parent: "Load OSM" {
-	parameter "File:" var: osmfile <- file<geometry>(osm_file("http://download.geofabrik.de/europe/andorra-latest.osm.pbf", filtering));
-}
+//experiment "Load OSM from Internet" type: gui parent: "Load OSM" {
+//	parameter "File:" var: osmfile <- file<geometry>(osm_file("http://download.geofabrik.de/europe/andorra-latest.osm.pbf", filtering));
+//}

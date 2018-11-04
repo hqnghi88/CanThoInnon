@@ -21,6 +21,7 @@ global {
 	float min_value;
 	bool recompute_path <- false;
 	geometry road_geom;
+	map<road,float> road_weights;
 
 	init {
 	//		ask cell {
@@ -35,16 +36,17 @@ global {
 		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
 		//			color <- hsb(35 / 360, val * val, 0.64);
 			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
-			color <- hsb(222 / 360, val, 1.0);
+			color <- hsb(222 / 360, val,0.9);
 			//			color<-rgb(0,0,val*255);
 		}
 
-		//				create water {
-		//					location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
-		//				}
+						create water {
+							location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+						}
 		create road from: road_shp {
 		}
 
+      	road_weights <- road as_map (each::each.shape.perimeter);
 		road_geom <- union(road accumulate (each.shape));
 		//		ask road{
 		//			loop p over:shape.points{
@@ -60,7 +62,7 @@ global {
 			texture <- textures[rnd(9)];
 		}
 
-		create vehicle number: 100 {
+		create vehicle number: 1000 {
 			location <- any_location_in(road_geom);
 			//			location <- any_location_in(any(road));
 			//			target <- any_location_in(any(road));
@@ -74,9 +76,9 @@ species vehicle skills: [moving] {
 	rgb color;
 	string type;
 	int nb_people;
-	float wsize <- 30.0 + rnd(2);
-	float hsize <- 10.0 + rnd(2);
-	float sp <- 20 + rnd(40.0);
+	float wsize <- 5.0 + rnd(2);
+	float hsize <- 2.0 + rnd(2);
+	float sp <- 2 + rnd(40.0);
 	float csp <- sp;
 	//	float ccsp <- csp;
 	float perception_distance <- wsize * 2;
@@ -86,7 +88,7 @@ species vehicle skills: [moving] {
 	rgb csd <- #green;
 
 	reflex move when: target != nil {
-		do goto target: target on: road_graph recompute_path: recompute_path speed: csp; // move_weights: road_weights;
+		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
 		if (target != nil and location distance_to target <= sp) {
 		//		if (target = location){
 			target <- nil;
@@ -124,9 +126,9 @@ species vehicle skills: [moving] {
 
 	aspect default {
 		draw shape color: csd border: #black depth: 1 rotate: heading;
-		if (TL_area != nil) {
-			draw TL_area color: csd depth: 0.5;
-		}
+//		if (TL_area != nil) {
+//			draw TL_area color: csd depth: 0.5;
+//		}
 
 	}
 
@@ -156,23 +158,23 @@ species vehicle skills: [moving] {
 species road {
 
 	aspect default {
-		draw shape color: #black;
+		draw shape+3 color: #gray;
 	}
 
 }
 
 species water {
-	float wlevel <- -1.0;
+	float wlevel <- -14.0;
 	int incr <- 1;
 	geometry shape <- box(world.shape.width, world.shape.height, 1);
 
 	reflex innon {
 		wlevel <- wlevel + incr * 0.05;
-		if (wlevel > 5) {
+		if (wlevel > -9) {
 			incr <- -1;
 		}
 
-		if (wlevel < -1.0) {
+		if (wlevel < -14.0) {
 			incr <- 1;
 		}
 
@@ -187,10 +189,15 @@ species water {
 
 species building {
 	float depth;
+	string osm_name;
 	file texture;
 
 	aspect default {
 		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
+		if(osm_name index_of "osm_agent" != 0){
+//			write osm_name;
+			draw  osm_name size:0.010  color:#yellow at:location add_z (depth+1) perspective:false;
+		}
 	}
 
 }
@@ -199,13 +206,15 @@ grid cell file: grid_data;
 
 experiment show_example type: gui {
 	output {
-		display test type: opengl {
+		display test 
+		type: opengl 
+		{
 			species water;
-			//			grid cell refresh: false;
+//						grid cell refresh: false;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
 			species vehicle; //position: {0, 0, 0.002};
-			grid cell elevation: grid_value triangulation: true refresh: false transparency: 0.0 position: {0, 0, -0.004}; //
+			grid cell elevation: grid_value triangulation: true refresh: false transparency: 0.0 position: {0, 0, -0.003}; //
 		}
 
 		//		display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 18.0} camera_look_pos:
