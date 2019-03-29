@@ -14,11 +14,11 @@ global {
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(building_shp);
 	file roof_texture <- file('../images/building_texture/roof_top.png');
-	list
-	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
+	list textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
 	graph road_graph;
 	float max_value;
 	float min_value;
+	bool show_building_names<-false;
 	bool recompute_path <- false;
 	geometry road_geom;
 	map<road,float> road_weights;
@@ -62,7 +62,7 @@ global {
 			texture <- textures[rnd(9)];
 		}
 
-		create vehicle number: 500 {
+		create vehicle number: 1500 {
 			location <- any_location_in(road_geom);
 			//			location <- any_location_in(any(road));
 			//			target <- any_location_in(any(road));
@@ -78,7 +78,8 @@ species vehicle skills: [moving] {
 	int nb_people;
 	float wsize <- 5.0 + rnd(2);
 	float hsize <- 2.0 + rnd(2);
-	float sp <- 1 + rnd(10.0);
+	bool insane<-flip(0.001)?true:false;
+	float sp <- insane?70+rnd(50):10 + rnd(30.0);
 	float csp <- sp;
 	//	float ccsp <- csp;
 	float perception_distance <- wsize * 2;
@@ -199,9 +200,9 @@ species building {
 	}
 	aspect default {
 		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
-		if(osm_name index_of "osm_agent" != 0){
+		if(show_building_names and osm_name index_of "osm_agent" != 0){
 //			write osm_name;
-			draw  osm_name size:0.010  color:#yellow at:location add_z (depth+1) perspective:false ;
+			draw  osm_name size:0.010  color:#yellow at:{location.x,location.y, (depth+1)} perspective:false ;
 		}
 	}
 
@@ -211,6 +212,7 @@ grid cell file: grid_data{
 }
 
 experiment show_example type: gui {
+	parameter "Show Building Name" var:show_building_names;
 	output {
 		display test camera_pos: {956.6999,3239.5736,511.4931} camera_look_pos: {1799.5599,1836.819,-322.3095} camera_up_vector: {0.2338,0.3891,0.891} 
 		type: opengl 
@@ -223,15 +225,15 @@ experiment show_example type: gui {
 			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.003}; // transparency: 0.0
 		}
 
-		//		display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 18.0} camera_look_pos:
-		//		{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 18.0}
-		//		camera_up_vector: {0.0, 0.0, 5.0} {
-		//		//			grid cell elevation: grid_value triangulation: true refresh: false;
-		//			grid cell refresh: false;
-		//			species road refresh: false;
-		//			species building refresh: false;
-		//			species vehicle;
-		//		}
+//				display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
+//				{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 5.0}
+//				camera_up_vector: {0.0, 0.0, -1.0} {
+//				//			grid cell elevation: grid_value triangulation: true refresh: false;
+//					grid cell refresh: false;
+//					species road refresh: false;
+//					species building refresh: false;
+//					species vehicle;
+//				}
 
 	}
 
