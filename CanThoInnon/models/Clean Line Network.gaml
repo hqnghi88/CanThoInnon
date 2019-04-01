@@ -9,7 +9,7 @@ model clean_road_network
 
 global {
 	//Shapefile of the roads
-	file road_shapefile <- file("../includes/roads_clean.shp");
+	file road_shapefile <- file("../includes/ninhkieuRoads2.shp");
 	
 	//Shape of the environment
 	geometry shape <- envelope(road_shapefile);
@@ -46,7 +46,7 @@ global {
 		//computed the connected components of the graph (for visualization purpose)
 		connected_components <- list<list<point>>(connected_components_of(road_network_clean));
 		loop times: length(connected_components) {colors << rnd_color(255);}
-		save road to:"../includes/roads2.shp" type:shp;
+		save road to:"../includes/ninhkieuRoads.shp" type:shp;
     }
 }
 
