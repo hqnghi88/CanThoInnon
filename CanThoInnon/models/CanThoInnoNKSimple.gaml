@@ -8,12 +8,12 @@ model CanThoInno
 
 global {
 //definiton of the file to import
-	file grid_data <- file('../includes/NKdem.tif');
+//	file grid_data <- file('../includes/NKdem.tif');
 	file road_shp <- file("../includes/nkRoadsSimple.shp");
 	file node_shp <- file("../includes/nkNodesSimple.shp");
-//	file road_shp <- file("../includes/ninhkieuRoadsSimple.shp");
-//	file node_shp <- file("../includes/ninhkieuNodesSimple.shp");
-	file building_shp <- file("../includes/buildingNK.shp");
+//	file road_shp <- file("../includes/ninhkieu.shp");
+//	file node_shp <- file("../includes/ninhkieuNodes.shp");
+//	file building_shp <- file("../includes/buildingNK.shp");
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(road_shp);
 	file roof_texture <- file('../images/building_texture/roof_top.png');
@@ -23,9 +23,13 @@ global {
 	bool show_building_names <- false;
 	bool recompute_path <- false;
 	geometry road_geom;
-	int nbvehicle<-100;
+	int nbvehicle<- 200;
 	map<road, float> road_weights;
 	list<traffic_light> tttt<-[];
+	list<traffic_light> moved_agents ; 
+	point target;
+	geometry zone <- circle(20);
+	bool can_drop;
 	init {
 	//		ask cell {
 	//			grid_value <- grid_value + 33;
@@ -47,8 +51,8 @@ global {
 //			is_traffic_signal <- flip(0.01)?true:false;
 		
 			color_fire<- flip(0.5)?#red:#green;
-			nbred<-15+rnd(60);
-			nbgreen<-15+rnd(60);
+			nbred<-30+rnd(70);
+			nbgreen<-15+rnd(40);
 		}
 		tttt<-traffic_light where (each.is_traffic_signal);
 
@@ -66,10 +70,10 @@ global {
 		//			} 
 		//		}
 		road_graph <- as_edge_graph(list(road));
-		create building from: building_shp {
-			depth <- (rnd(100) / 100 * shape.width);
-			texture <- textures[rnd(9)];
-		}
+//		create building from: building_shp {
+//			depth <- (rnd(100) / 100 * shape.width);
+//			texture <- textures[rnd(9)];
+//		}
 
 		create vehicle number: nbvehicle {
 			location <- any_location_in(road_geom);
@@ -79,9 +83,79 @@ global {
 
 	}
 
+	action kill 
+	{
+		ask moved_agents
+		{
+			do die;
+		}
+
+		moved_agents <- list<traffic_light>([]);
+	}
+
+	action duplicate 
+	{
+		geometry available_space <- (zone at_location target) - (union(moved_agents) + 10);
+		create traffic_light number: 1 with: (location: any_location_in(available_space)){				
+			is_traffic_signal <- true;
+//			is_traffic_signal <- flip(0.01)?true:false;
+		
+			color_fire<- flip(0.5)?#red:#green;
+			nbred<-30+rnd(70);
+			nbgreen<-15+rnd(40);
+		}
+	}
+
+	action click 
+	{
+		if (empty(moved_agents))
+		{
+			list<traffic_light> selected_agents <- traffic_light inside (zone at_location #user_location);
+			moved_agents <- selected_agents;
+			ask selected_agents
+			{
+				difference <- #user_location - location;
+				color <- # olive;
+			}
+
+		} else if (can_drop)
+		{
+			ask moved_agents
+			{
+				color <- # burlywood;
+			}
+
+			moved_agents <- list<traffic_light>([]);
+		}
+
+	}
+
+	action move 
+	{
+		can_drop <- true;
+		target <- #user_location;
+		list<traffic_light> other_agents <- (traffic_light inside (zone at_location #user_location)) - moved_agents;
+		geometry occupied <- geometry(other_agents);
+		ask moved_agents
+		{
+			location <- #user_location - difference;
+			if (occupied intersects self)
+			{
+				color <- # red;
+				can_drop <- false;
+			} else
+			{
+				color <- # olive;
+			}
+
+		}
+
+	}
 }
 species traffic_light{
 	bool is_traffic_signal;
+	point difference <- { 0, 0 };
+	geometry shape <- square(1);
 	int nbred;
 	int nbgreen;
 	rgb color_fire;
@@ -116,7 +190,7 @@ species vehicle skills: [moving] {
 	float speed<- insane ? (70 + rnd(50))°km / °h : (10 + rnd(60.0))°km / °h;
 	float csp <- speed;
 	//	float ccsp <- csp;
-	float perception_distance <- wsize * 4 +speed;
+	float perception_distance <- wsize * 2;
 	geometry shape <- rectangle(wsize, hsize);
 	geometry TL_area;
 	point target <- nil;
@@ -200,7 +274,7 @@ species vehicle skills: [moving] {
 species road {
 
 	aspect default {
-		draw shape + 3 empty:true color: #gray;
+		draw shape + 5 empty:false color: #gray;
 	}
 
 }
@@ -233,14 +307,14 @@ species building {
 	string osm_name;
 	file texture;
 
-	reflex gravity {
-		cell c <- cell at location;
-		if (c != nil) {
-			c.grid_value <- c.grid_value - shape.perimeter / 100;
-		}
-
-	}
-
+//	reflex gravity {
+//		cell c <- cell at location;
+//		if (c != nil) {
+//			c.grid_value <- c.grid_value - shape.perimeter / 100;
+//		}
+//
+//	}
+//
 	aspect default {
 		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
 		if (show_building_names and osm_name index_of "osm_agent" != 0) {
@@ -252,21 +326,50 @@ species building {
 
 }
 //definition of the grid from the geotiff file: the width and height of the grid are directly read from the asc file. The values of the asc file are stored in the grid_value attribute of the cells.
-grid cell file: grid_data {
-}
+//grid cell file: grid_data {
+//}
 
 experiment show_example type: gui {
 	parameter "Show Building Name" var: show_building_names;
+	font regular <- font("Helvetica", 14, # bold);
 	output {
 		display test 
 //		camera_pos: {956.6999, 3239.5736, 511.4931} camera_look_pos: {1799.5599, 1836.819, -322.3095} camera_up_vector: {0.2338, 0.3891, 0.891} 
 		type: opengl {
 		//			species water;
 		//						grid cell refresh: false;
+		
+			graphics "Empty target" 
+			{
+				if (empty(moved_agents))
+				{
+					draw zone at: target empty: false border: false color: #wheat;
+				}
+
+			}
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
 			species vehicle; //position: {0, 0, 0.002};
+			event mouse_move action: move;
+			event mouse_up action: click;
+			event 'r' action: kill;
+			event 'c' action: duplicate;
+			graphics "Full target" 
+			{
+				int size <- length(moved_agents);
+				if (size > 0)
+				{
+					rgb c1 <- rgb(#darkseagreen, 120);
+					rgb c2 <- rgb(#firebrick, 120);
+					draw zone at: target empty: false border: false color: (can_drop ? c1 : c2);
+					draw string(size) at: target + { -30, -30 } font: regular color: # black;
+					draw "'r': remove" at: target + { -30, 0 } font: regular color: # black;
+					draw "'c': copy" at: target + { -30, 30 } font: regular color: # black;
+				}
+
+			}
+			
 			//			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.003}; // transparency: 0.0
 		}
 
