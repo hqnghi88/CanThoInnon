@@ -4,7 +4,8 @@ global {
 	graph the_network;
 	int connected <- 0;
 	map strahler_numbers;
-	file the_shapefile <- file("../includes/ninhkieuRoads.shp");
+	string ss<-"../includes/nkNodesSimple.shp";
+	file the_shapefile <- file(ss);
 	geometry shape <- envelope(the_shapefile);
 
 	init {
@@ -18,26 +19,30 @@ global {
 				index <- connected;
 				mcolor<-rnd_color(255);
 				list ll<-theEdge where((each.index=-1) and (shape covers each.shape));
-				write ll;
+				ask ll{
+					do die;
+				}
 
 			}
 
 		}
 
 		write connected;
+		
+		save theEdge to:ss type:shp rewrite:true;
 	}
 
-	action visit (theEdge e, rgb c) {
-		ask ((theEdge where (each.index = -1)) overlapping e) {
-			index <- connected;
-			mcolor<-c;
-			ask world {
-				do visit(myself, c);
-			}
-
-		}
-
-	}
+//	action visit (theEdge e, rgb c) {
+//		ask ((theEdge where (each.index = -1)) overlapping e) {
+//			index <- connected;
+//			mcolor<-c;
+//			ask world {
+//				do visit(myself, c);
+//			}
+//
+//		}
+//
+//	}
 
 }
 

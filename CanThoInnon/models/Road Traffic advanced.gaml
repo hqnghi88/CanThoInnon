@@ -11,27 +11,27 @@ model RoadTrafficComplex
 global {
 
 //Check if we use simple data or more complex roads
-//	file shape_file_roads <-  file("../includes/ninhkieu.shp");
-//	file shape_file_nodes <- file("../includes/ninhkieuNodes2.shp");
-	file shape_file_roads <- file("../includes/ninhkieuRoadsSimple.shp");
-	file shape_file_nodes <- file("../includes/ninhkieuNodesSimple.shp");
+	file shape_file_roads <-  file("../includes/ninhkieu.shp");
+	file shape_file_nodes <- file("../includes/ninhkieuNodes2.shp");
+//	file shape_file_roads <- file("../includes/ninhkieuRoadsSimple.shp");
+//	file shape_file_nodes <- file("../includes/ninhkieuNodesSimple.shp");
 	file shape_file_bounds <- file("../includes/buildingNK.shp");
 	geometry shape <- envelope(shape_file_roads); // + 50.0;
 	graph road_network;
-	int nb_people <- 2;
+	int nb_people <- 1000;
 	//geometry road_geom ;
 	init {
 	//create the intersection and check if there are traffic lights or not by looking the values inside the type column of the shapefile and linking
 	// this column to the attribute is_traffic_signal. 
 		create intersection from: shape_file_nodes { // with: [is_traffic_signal::(read("type") = "traffic_signals")];
-			is_traffic_signal <- false; //flip(0.005)?true:false;
+			is_traffic_signal <-flip(0.005)?true:false;
 
 		}
 
 		//create road agents using the shapefile and using the oneway column to check the orientation of the roads if there are directed
 		create road from: shape_file_roads { //with: [lanes::int(read("lanes")), oneway::string(read("oneway"))] {
-			lanes <- 1 + rnd(3);
-			oneway <- "-1"; //flip(0.5)?"-1":"no";
+			lanes <- 1;// + rnd(3);
+			oneway <- flip(0.5)?"-1":"no";
 			geom_display <- shape + (2.5 * lanes);
 			maxspeed <- (lanes = 1 ? 30.0 : (lanes = 2 ? 50.0 : 70.0)) °km / °h;
 			switch oneway {
@@ -219,7 +219,7 @@ species people skills: [advanced_driving] {
 		//		target <- any_location_in(road_geom);
 		current_path <- compute_path(graph: road_network, target: target);
 		if (current_path = nil) {
-			write "not found "+self;
+//			write "not found "+self;
 			final_target <- nil;
 		} 
 	}
@@ -250,9 +250,9 @@ species people skills: [advanced_driving] {
 	aspect base3D {
 		point loc <- calcul_loc();
 		draw rectangle(vehicle_length, 10) + triangle(6) rotate: heading + 90 depth: 5 color: color at: loc;
-		if (target != nil) {
-			draw line(location, target.location) color: #black;
-		}
+//		if (target != nil) {
+//			draw line(location, target.location) color: #black;
+//		}
 
 		if (breakdown) {
 			draw circle(2) at: loc color: #red;

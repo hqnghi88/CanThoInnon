@@ -4,7 +4,7 @@ global {
 	graph the_network;
 	int connected <- 0;
 	map strahler_numbers;
-	file the_shapefile <- file("../includes/ninhkieuRoadsSimple.shp");
+	file the_shapefile <- file("../includes/ninhkieuRoads.shp");
 	geometry shape <- envelope(the_shapefile);
 
 	init {

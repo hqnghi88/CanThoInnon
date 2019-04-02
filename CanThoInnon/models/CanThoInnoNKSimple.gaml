@@ -11,9 +11,9 @@ global {
 //	file grid_data <- file('../includes/NKdem.tif');
 	file road_shp <- file("../includes/nkRoadsSimple.shp");
 	file node_shp <- file("../includes/nkNodesSimple.shp");
-	//	file road_shp <- file("../includes/ninhkieu.shp");
-	//	file node_shp <- file("../includes/ninhkieuNodes.shp");
-	//	file building_shp <- file("../includes/buildingNK.shp");
+	//		file road_shp <- file("../includes/ninhkieu.shp");
+	//		file node_shp <- file("../includes/nodes.shp");
+	file building_shp <- file("../includes/nkBuildingSimple.shp");
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(road_shp);
 	file roof_texture <- file('../images/building_texture/roof_top.png');
@@ -25,7 +25,6 @@ global {
 	geometry road_geom;
 	int nbvehicle <- 200;
 	map<road, float> road_weights;
-//	list<traffic_light> tttt <- [];
 	list<traffic_light> moved_agents;
 	point target;
 	geometry zone <- circle(10);
@@ -47,14 +46,14 @@ global {
 	//			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
 	//		}
 		create traffic_light from: node_shp {
-			is_traffic_signal <- true;
-			//			is_traffic_signal <- flip(0.01)?true:false;
+		//			is_traffic_signal <- true;
+			is_traffic_signal <- flip(0.1) ? true : false;
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
 			nbgreen <- 15 + rnd(40);
 		}
 
-//		tttt <- traffic_light where (each.is_traffic_signal);
+		//		tttt <- traffic_light where (each.is_traffic_signal);
 		create road from: road_shp {
 		}
 
@@ -69,10 +68,11 @@ global {
 		//			} 
 		//		}
 		road_graph <- as_edge_graph(list(road));
-		//		create building from: building_shp {
-		//			depth <- (rnd(100) / 100 * shape.width);
-		//			texture <- textures[rnd(9)];
-		//		}
+		create building from: building_shp {
+			depth <- (rnd(100) / 100 * shape.width);
+			texture <- textures[rnd(9)];
+		}
+
 		create vehicle number: nbvehicle {
 			location <- any_location_in(road_geom);
 			//			location <- any_location_in(any(road));
@@ -88,18 +88,17 @@ global {
 	//	user_command "Exit Traffic Light" when:edit_traffic_light_mode{ 
 	//		edit_traffic_light_mode<-false;
 	//	}
-//	action kill_traffic_light {
-//	//		if(!edit_traffic_light_mode) {return;}
-//		ask moved_agents {
-//			do die;
-//		}
-//
-//		moved_agents <- list<traffic_light>([]);
-//	}
+	//	action kill_traffic_light {
+	//	//		if(!edit_traffic_light_mode) {return;}
+	//		ask moved_agents {
+	//			do die;
+	//		}
+	//
+	//		moved_agents <- list<traffic_light>([]);
+	//	}
 
-//	action duplicate_traffic_light {
-//	}
-
+	//	action duplicate_traffic_light {
+	//	}
 	user_command "Create a traffic light" {
 	//		if(!edit_traffic_light_mode) {return;}
 		geometry available_space <- (zone at_location target) - (union(moved_agents) + 10);
@@ -111,26 +110,25 @@ global {
 			nbgreen <- 15 + rnd(40);
 		} }
 
-//	action click {
-//	//		if(!edit_traffic_light_mode) {return;}
-//		if (empty(moved_agents)) {
-//			list<traffic_light> selected_agents <- traffic_light inside (zone at_location #user_location);
-//			moved_agents <- selected_agents;
-//			ask selected_agents {
-//				difference <- #user_location - location;
-//				color <- #olive;
-//			}
-//
-//		} else if (can_drop) {
-//			ask moved_agents {
-//				color <- #burlywood;
-//			}
-//
-//			moved_agents <- list<traffic_light>([]);
-//		}
-//
-//	}
-
+		//	action click {
+	//	//		if(!edit_traffic_light_mode) {return;}
+	//		if (empty(moved_agents)) {
+	//			list<traffic_light> selected_agents <- traffic_light inside (zone at_location #user_location);
+	//			moved_agents <- selected_agents;
+	//			ask selected_agents {
+	//				difference <- #user_location - location;
+	//				color <- #olive;
+	//			}
+	//
+	//		} else if (can_drop) {
+	//			ask moved_agents {
+	//				color <- #burlywood;
+	//			}
+	//
+	//			moved_agents <- list<traffic_light>([]);
+	//		}
+	//
+	//	}
 	action move {
 		target <- #user_location;
 		if (!edit_traffic_light_mode) {
@@ -379,13 +377,12 @@ experiment show_example type: gui {
 		type: opengl {
 		//			species water;
 		//						grid cell refresh: false;
-//			graphics "Empty target" {
-//				if (empty(moved_agents)) {
-//					draw zone at: target empty: false border: false color: #wheat;
-//				}
-//
-//			}
-
+		//			graphics "Empty target" {
+		//				if (empty(moved_agents)) {
+		//					draw zone at: target empty: false border: false color: #wheat;
+		//				}
+		//
+		//			}
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
@@ -394,18 +391,18 @@ experiment show_example type: gui {
 			//			event mouse_up action: click;
 			//			event 'r' action: kill_traffic_light;
 			//			event 'c' action: duplicate_traffic_light;
-//			graphics "Full target" {
-//				int size <- length(moved_agents);
-//				if (size > 0) {
-//					rgb c1 <- rgb(#darkseagreen, 120);
-//					rgb c2 <- rgb(#firebrick, 120);
-//					draw zone at: target empty: false border: false color: (can_drop ? c1 : c2);
-//					//					draw string(size) at: target + {-30, -30} font: regular color: #black;
-//					//					draw "'r': remove" at: target + {-30, 0} font: regular color: #black;
-//					//					draw "'c': copy" at: target + {-30, 30} font: regular color: #black;
-//				}
-//
-//			}
+			//			graphics "Full target" {
+			//				int size <- length(moved_agents);
+			//				if (size > 0) {
+			//					rgb c1 <- rgb(#darkseagreen, 120);
+			//					rgb c2 <- rgb(#firebrick, 120);
+			//					draw zone at: target empty: false border: false color: (can_drop ? c1 : c2);
+			//					//					draw string(size) at: target + {-30, -30} font: regular color: #black;
+			//					//					draw "'r': remove" at: target + {-30, 0} font: regular color: #black;
+			//					//					draw "'c': copy" at: target + {-30, 30} font: regular color: #black;
+			//				}
+			//
+			//			}
 
 			//			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.003}; // transparency: 0.0
 		}
