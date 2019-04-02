@@ -14,9 +14,9 @@ model RoadTrafficCity
 global {   
 	
 	//Shapefiles for the buildings, the roads and the bounds of the environment
-	file shape_file_roads parameter: "Shapefile for the roads:" category: "GIS" <- file("../includes/ManhattanRoads.shp") ;
-	file shape_file_bounds parameter: "Shapefile for the bounds:" category: "GIS" <- file("../includes/ManhattanBounds.shp") ;
-	file shape_file_buildings parameter: "Shapefile for the buildings:" category: "GIS" <- file("../includes/ManhattanBuildings.shp") ;
+	file shape_file_roads parameter: "Shapefile for the roads:" category: "GIS" <- file("../includes/ninhkieuRoadsSimple.shp") ;
+	file shape_file_bounds parameter: "Shapefile for the bounds:" category: "GIS" <- file("../includes/ninhkieuNodesSimple.shp") ;
+	file shape_file_buildings parameter: "Shapefile for the buildings:" category: "GIS" <- file("../includes/ninhkieuRoadsSimple.shp") ;
 	geometry shape <- envelope(shape_file_bounds);
 	
 	//Stock the number of times agents reached their goal (their house or work place)
@@ -30,7 +30,7 @@ global {
 	int max_work_start <- 60;
 	
 	//Number of people created
-	int nb_people <- 500;
+	int nb_people <- 50;
 	
 	//Variables to manage the minimal and maximal time to go home
 	int min_work_end <- 84; 
@@ -47,7 +47,10 @@ global {
 	init {  
 		
 		//creation of the agents of road and building species using the shapefile and linking the 
-		create road from: shape_file_roads with:[nbLanes::int(read("lanes"))];
+		create road from: shape_file_roads {//with:[nbLanes::int(read("lanes"))];
+			nbLanes<-1+rnd(3);
+			
+		}
 		create building from: shape_file_buildings;
 		
 		//Increase the shape of roads according to the number of lanes it has

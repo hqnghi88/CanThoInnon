@@ -10,29 +10,28 @@ model RoadTrafficComplex
 
 global {
 
-
-	//Check if we use simple data or more complex roads
+//Check if we use simple data or more complex roads
 //	file shape_file_roads <-  file("../includes/ninhkieu.shp");
 //	file shape_file_nodes <- file("../includes/ninhkieuNodes2.shp");
-	file shape_file_roads <-  file("../includes/ninhkieuRoads.shp");
-	file shape_file_nodes <- file("../includes/ninhkieuNodes.shp");
-	file shape_file_bounds <-   file("../includes/buildingNK.shp");
-	geometry shape <- envelope(shape_file_bounds);// + 50.0;
+	file shape_file_roads <- file("../includes/ninhkieuRoadsSimple.shp");
+	file shape_file_nodes <- file("../includes/ninhkieuNodesSimple.shp");
+	file shape_file_bounds <- file("../includes/buildingNK.shp");
+	geometry shape <- envelope(shape_file_roads); // + 50.0;
 	graph road_network;
-	int nb_people <-   20;
-//geometry road_geom ;
+	int nb_people <- 2;
+	//geometry road_geom ;
 	init {
 	//create the intersection and check if there are traffic lights or not by looking the values inside the type column of the shapefile and linking
 	// this column to the attribute is_traffic_signal. 
-		create intersection from: shape_file_nodes{// with: [is_traffic_signal::(read("type") = "traffic_signals")];
-			is_traffic_signal <- flip(0.005)?true:false;
-			
+		create intersection from: shape_file_nodes { // with: [is_traffic_signal::(read("type") = "traffic_signals")];
+			is_traffic_signal <- false; //flip(0.005)?true:false;
+
 		}
 
 		//create road agents using the shapefile and using the oneway column to check the orientation of the roads if there are directed
-		create road from: shape_file_roads {//with: [lanes::int(read("lanes")), oneway::string(read("oneway"))] {
-			lanes<-1;// +rnd(3);
-			oneway<-"-1";//flip(0.5)?"-1":"no";
+		create road from: shape_file_roads { //with: [lanes::int(read("lanes")), oneway::string(read("oneway"))] {
+			lanes <- 1 + rnd(3);
+			oneway <- "-1"; //flip(0.5)?"-1":"no";
 			geom_display <- shape + (2.5 * lanes);
 			maxspeed <- (lanes = 1 ? 30.0 : (lanes = 2 ? 50.0 : 70.0)) °km / °h;
 			switch oneway {
@@ -62,7 +61,7 @@ global {
 		//creation of the road network using the road and intersection agents
 		road_network <- (as_driving_graph(road, intersection)) with_weights general_speed_map;
 
-//		road_geom <- union(road accumulate (each.shape));
+		//		road_geom <- union(road accumulate (each.shape));
 		//initialize the traffic light
 		ask intersection {
 			do initialize;
@@ -76,7 +75,7 @@ global {
 			proba_lane_change_down <- 0.5 + (rnd(500) / 500);
 			location <- one_of(intersection where empty(each.stop)).location;
 
-//			location <- any_location_in(road_geom);
+			//			location <- any_location_in(road_geom);
 			security_distance_coeff <- 5 / 9 * 3.6 * (1.5 - rnd(1000) / 1000);
 			proba_respect_priorities <- 1.0 - rnd(200 / 1000);
 			proba_respect_stops <- [1.0];
@@ -196,7 +195,7 @@ species road skills: [skill_road] {
 	}
 
 	aspect base3D {
-		draw geom_display color: #darkgray;
+		draw geom_display empty:true color: #darkgray;
 	}
 
 }
@@ -217,11 +216,13 @@ species people skills: [advanced_driving] {
 
 	reflex time_to_go when: final_target = nil {
 		target <- one_of(intersection where not each.is_traffic_signal);
-//		target <- any_location_in(road_geom);
+		//		target <- any_location_in(road_geom);
 		current_path <- compute_path(graph: road_network, target: target);
 		if (current_path = nil) {
+			write "not found "+self;
 			final_target <- nil;
-		} }
+		} 
+	}
 
 	reflex move when: current_path != nil and final_target != nil {
 		do drive;
@@ -249,9 +250,10 @@ species people skills: [advanced_driving] {
 	aspect base3D {
 		point loc <- calcul_loc();
 		draw rectangle(vehicle_length, 10) + triangle(6) rotate: heading + 90 depth: 5 color: color at: loc;
-		if(target != nil){
-			draw line(location,target.location) color:#black;
+		if (target != nil) {
+			draw line(location, target.location) color: #black;
 		}
+
 		if (breakdown) {
 			draw circle(2) at: loc color: #red;
 		}
@@ -273,13 +275,12 @@ species people skills: [advanced_driving] {
 		}
 
 	} }
- 
-experiment experiment_3D type: gui { 
+
+experiment experiment_3D type: gui {
 	output {
-		display carte_principale 
-//		camera_pos: {956.6999,3239.5736,511.4931} camera_look_pos: {1799.5599,1836.819,-322.3095} camera_up_vector: {0.2338,0.3891,0.891}   
-		type: opengl 
-		{
+		display carte_principale
+		//		camera_pos: {956.6999,3239.5736,511.4931} camera_look_pos: {1799.5599,1836.819,-322.3095} camera_up_vector: {0.2338,0.3891,0.891}   
+		type: opengl {
 			species road aspect: base3D refresh: true;
 			species intersection aspect: base3D;
 			species people aspect: base3D;

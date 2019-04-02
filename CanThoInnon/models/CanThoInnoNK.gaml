@@ -9,7 +9,7 @@ model CanThoInno
 global {
 //definiton of the file to import
 	file grid_data <- file('../includes/NKdem.tif');
-	file road_shp <- file("../includes/ninhkieu.shp");
+	file road_shp <- file("../includes/ninhkieuRoadsSimple.shp");
 	file building_shp <- file("../includes/buildingNK.shp");
 	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(building_shp);
@@ -62,7 +62,7 @@ global {
 			texture <- textures[rnd(9)];
 		}
 
-		create vehicle number: 1500 {
+		create vehicle number: 150 {
 			location <- any_location_in(road_geom);
 			//			location <- any_location_in(any(road));
 			//			target <- any_location_in(any(road));

@@ -17,9 +17,8 @@ global {
 				connected <- connected + 1;
 				index <- connected;
 				mcolor<-rnd_color(255);
-				ask world {
-					do visit(myself, myself.mcolor);
-				}
+				list ll<-theEdge where((each.index=-1) and (shape covers each.shape));
+				write ll;
 
 			}
 

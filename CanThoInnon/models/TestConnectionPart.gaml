@@ -4,7 +4,7 @@ global {
 	graph the_network;
 	int connected <- 0;
 	map strahler_numbers;
-	file the_shapefile <- file("../includes/ninhkieuRoads.shp");
+	file the_shapefile <- file("../includes/ninhkieuRoadsSimple.shp");
 	geometry shape <- envelope(the_shapefile);
 
 	init {
@@ -46,7 +46,7 @@ species theEdge {
 	int index;
 	rgb mcolor;
 	aspect default {
-		draw shape + 5 color: mcolor;
+		draw shape color: mcolor;
 	}
 
 }
