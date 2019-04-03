@@ -8,7 +8,7 @@ model CanThoInno
 
 global {
 //definiton of the file to import
-//	file grid_data <- file('../includes/NKdem.tif');
+	file grid_data <- file('../includes/NKdemsimple.tif');
 	file road_shp <- file("../includes/nkRoadsSimple.shp");
 	file node_shp <- file("../includes/nkNodesSimple.shp");
 	//		file road_shp <- file("../includes/ninhkieu.shp");
@@ -21,6 +21,8 @@ global {
 	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
 	graph road_graph;
 	bool show_building_names <- false;
+	float max_value;
+	float min_value;
 	bool recompute_path <- false;
 	geometry road_geom;
 	int nbvehicle <- 200;
@@ -31,17 +33,23 @@ global {
 	bool can_drop;
 
 	init {
-	//		ask cell {
-	//			grid_value <- grid_value + 33;
-	//		} 
-	//		ask cell {
-	//		//			grid_value <- grid_value;
-	//		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
-	//		//			color <- hsb(35 / 360, val * val, 0.64);
-	//			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
-	//			color <- hsb(222 / 360, val,0.9);
-	//			//			color<-rgb(0,0,val*255);
-	//		}
+			ask cell {
+				grid_value <- grid_value + 33;
+			} 
+		
+		max_value <- cell max_of (each.grid_value);
+		min_value <- cell min_of (each.grid_value);
+		write max_value;
+		write min_value;
+		ask cell {
+		//			grid_value <- grid_value;
+		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
+		//			color <- hsb(35 / 360, val * val, 0.64);
+			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
+			color <- hsb(222 / 360, val,0.9);
+			//			color<-rgb(0,0,val*255);
+		}
+
 	//		create water {
 	//			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
 	//		}
@@ -347,14 +355,14 @@ species building {
 	string osm_name;
 	file texture;
 
-	//	reflex gravity {
-	//		cell c <- cell at location;
-	//		if (c != nil) {
-	//			c.grid_value <- c.grid_value - shape.perimeter / 100;
-	//		}
-	//
-	//	}
-	//
+		reflex gravity {
+			cell c <- cell at location;
+			if (c != nil) {
+				c.grid_value <- c.grid_value - shape.perimeter / 100;
+			}
+	
+		}
+	
 	aspect default {
 		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
 		if (show_building_names and osm_name index_of "osm_agent" != 0) {
@@ -366,15 +374,16 @@ species building {
 
 }
 //definition of the grid from the geotiff file: the width and height of the grid are directly read from the asc file. The values of the asc file are stored in the grid_value attribute of the cells.
-//grid cell file: grid_data {
-//}
+grid cell file: grid_data {
+}
 experiment show_example type: gui {
 	parameter "Show Building Name" var: show_building_names;
 	font regular <- font("Helvetica", 14, #bold);
 	output {
 		display test
-		//		camera_pos: {956.6999, 3239.5736, 511.4931} camera_look_pos: {1799.5599, 1836.819, -322.3095} camera_up_vector: {0.2338, 0.3891, 0.891} 
-		type: opengl {
+//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
+		type: opengl 
+		{
 		//			species water;
 		//						grid cell refresh: false;
 		//			graphics "Empty target" {
@@ -387,6 +396,7 @@ experiment show_example type: gui {
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
 			species vehicle; //position: {0, 0, 0.002};
+						grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.03} transparency: 0.0;
 			event mouse_move action: move;
 			//			event mouse_up action: click;
 			//			event 'r' action: kill_traffic_light;
@@ -404,7 +414,6 @@ experiment show_example type: gui {
 			//
 			//			}
 
-			//			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.003}; // transparency: 0.0
 		}
 
 		//				display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
