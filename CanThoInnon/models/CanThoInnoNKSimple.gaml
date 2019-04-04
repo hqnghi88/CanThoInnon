@@ -26,7 +26,7 @@ global {
 	float min_value;
 	bool recompute_path <- false;
 	geometry road_geom;
-	int nbvehicle <- 1500;
+	int nbvehicle <- 300;
 	map<road, float> road_weights;
 	list<traffic_light> moved_agents;
 	point target;
@@ -35,19 +35,19 @@ global {
 
 	init {
 			ask cell {
-				grid_value <- grid_value + 33;
+				grid_value <- -grid_value ;//+ 33;
 			} 
 		
 		max_value <- cell max_of (each.grid_value);
 		min_value <- cell min_of (each.grid_value);
-		write max_value;
-		write min_value;
+//		write max_value;
+//		write min_value;
 		ask cell {
 		//			grid_value <- grid_value;
 		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
 		//			color <- hsb(35 / 360, val * val, 0.64);
-			float val <- (1 - (grid_value - min_value) / (max_value - min_value));
-			color <- hsb(222 / 360, val,0.9);
+			float val <- ( (grid_value - min_value) / (max_value - min_value));
+			color <- hsb(222 / 360, val,0.3);
 			//			color<-rgb(0,0,val*255);
 		}
 
@@ -80,7 +80,7 @@ global {
 		//		}
 		road_graph <- as_edge_graph(list(road));
 		create building from: building_shp {
-			depth <- (rnd(100) / 100 * shape.width);
+			depth <- (10+(rnd(70)) / 150 * shape.width);
 			texture <- textures[rnd(9)];
 		}
 
@@ -372,9 +372,9 @@ species building {
 	file texture;
 
 		reflex gravity {
-			cell c <- cell at location;
+			cell c <- first(cell overlapping self);
 			if (c != nil) {
-				c.grid_value <- c.grid_value - shape.perimeter / 100;
+				c.grid_value <- c.grid_value - (shape.perimeter / 100);
 			}
 	
 		}
@@ -396,10 +396,10 @@ experiment show_example type: gui {
 	parameter "Show Building Name" var: show_building_names;
 	font regular <- font("Helvetica", 14, #bold);
 	output {
-		display traffic_jam_display {
-			species road;
-			species road aspect: traffic_jam ;
-		}
+//		display traffic_jam_display {
+//			species road;
+//			species road aspect: traffic_jam ;
+//		}
 		display test
 //			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
 		type: opengl 
@@ -407,11 +407,11 @@ experiment show_example type: gui {
 		{
 		//			species water;
 		//						grid cell refresh: false;
+			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.007} transparency: 0.0;
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
 			species vehicle; //position: {0, 0, 0.002};
-//						grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.03} transparency: 0.0;
 			event mouse_move action: move;
 			
 
