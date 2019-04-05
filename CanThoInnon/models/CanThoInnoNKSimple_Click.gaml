@@ -34,6 +34,7 @@ global {
 	bool can_drop;
 	bool edit_mode <- false;
 
+	font regular <- font("Arial", 14, #bold);
 	init {
 		ask cell {
 			grid_value <- -grid_value; //+ 33;
@@ -126,7 +127,7 @@ global {
 		}
 
 		if (empty(moved_agents)) {
-			list<moveable> selected_agents <- get_all_instances(moveable) overlapping (zone at_location #user_location);
+			list<moveable> selected_agents <- list<moveable>(get_all_instances(moveable) overlapping (zone at_location #user_location));
 			moved_agents <- selected_agents;
 			ask selected_agents {
 				difference <- #user_location - location;
@@ -150,16 +151,16 @@ global {
 
 		can_drop <- true;
 		target <- #user_location;
-		list<moveable> other_agents <- (get_all_instances(moveable) overlapping (zone at_location #user_location)) - moved_agents;
-		geometry occupied <- geometry(other_agents);
+		//		list<moveable> other_agents <- list<moveable>((get_all_instances(moveable) overlapping (zone at_location #user_location)) - moved_agents);
+		//		geometry occupied <- geometry(other_agents);
 		ask moved_agents {
 			location <- #user_location - difference;
-			if (occupied intersects self) {
-				color <- #red;
-				can_drop <- false;
-			} else {
-				color <- #olive;
-			}
+			//			if (occupied intersects self) {
+			//				color <- #red;
+			//				can_drop <- false;
+			//			} else {
+			//				color <- #olive;
+			//			}
 
 		}
 
@@ -353,8 +354,7 @@ species building parent: moveable {
 	aspect default {
 		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
 		if (show_building_names and osm_name index_of "osm_agent" != 0) {
-		//			write osm_name;
-			draw osm_name size: 0.010 color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
+			draw osm_name font:regular size: 0.010 color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
 		}
 
 	}
@@ -366,7 +366,6 @@ grid cell file: grid_data {
 
 experiment show_example type: gui {
 	parameter "Show Building Name" var: show_building_names;
-	font regular <- font("Helvetica", 14, #bold);
 	output {
 	//		display traffic_jam_display {
 	//			species road;
@@ -376,18 +375,17 @@ experiment show_example type: gui {
 		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
 		type: opengl
 		//		background:#lightgray
-		{ 
-			overlay position: { 4, 3} size: { 80 #px, 20 #px } background: # black transparency: 0.1 border: #black rounded: true
-            {
-            	//for each possible type, we draw a square with the corresponding color and we write the name of the type
-               if(edit_mode)
-                {
-                    draw "Editing" at: { 20#px,10#px } color: #white border: #black; 
-                }
+		{
+			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
+			//for each possible type, we draw a square with the corresponding color and we write the name of the type
+				draw "Trường Châu Văn Liêm" at: {20 #px, 10 #px} color: #white border: #black;
+				if (edit_mode) {
+					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
+				}
 
-            }
-		//			species water;
-		//						grid cell refresh: false;
+			}
+			//			species water;
+			//						grid cell refresh: false;
 			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.007} transparency: 0.0;
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
