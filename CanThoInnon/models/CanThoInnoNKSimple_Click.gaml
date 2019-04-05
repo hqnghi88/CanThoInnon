@@ -30,7 +30,7 @@ global {
 	map<road, float> road_weights;
 	list<moveable> moved_agents;
 	point target;
-	geometry zone <- circle(1);
+	geometry zone <- circle(5);
 	bool can_drop;
 	bool edit_mode <- false;
 
@@ -83,7 +83,7 @@ global {
 		//		}
 		road_graph <- as_edge_graph(list(road));
 		create building from: building_shp {
-			depth <- (10 + (rnd(70)) / 150 * shape.width);
+			depth <- (10 + (rnd(20)) / 150 * shape.perimeter);
 			texture <- textures[rnd(9)];
 		}
 
@@ -95,27 +95,12 @@ global {
 
 	}
 
-	//	user_command "Design Traffic Light" when:!edit_traffic_light_mode{ 
-	//		edit_traffic_light_mode<-true;
-	//	}
-	//	user_command "Exit Traffic Light" when:edit_traffic_light_mode{ 
-	//		edit_traffic_light_mode<-false;
-	//	}
-	//	action kill_traffic_light {
-	//	//		if(!edit_traffic_light_mode) {return;}
-	//		ask moved_agents {
-	//			do die;
-	//		}
-	//
-	//		moved_agents <- list<traffic_light>([]);
-	//	}
-
-	//	action duplicate_traffic_light {
-	//	}
 	user_command "Create a traffic light" {
-	//		if(!edit_traffic_light_mode) {return;}
-		geometry available_space <- (zone at_location target) - (union(moved_agents) + 10);
-		create traffic_light number: 1 with: (location: any_location_in(available_space)) {
+		if (!edit_mode) {
+			return;
+		}
+		//		geometry available_space <- (zone at_location target) - (union(moved_agents) + 10);
+		create traffic_light number: 1 with: (location: target) {
 		//			is_traffic_signal <- flip(0.01)?true:false;
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
@@ -129,10 +114,13 @@ global {
 	user_command "Exit edit mode" {
 		edit_mode <- false;
 	}
- 	list<agent> get_all_instances(species<agent> spec) {
-        return spec.population +  spec.subspecies accumulate (get_all_instances(each));
-    }
-	action click { 
+
+	list<agent> get_all_instances (species<agent> spec) {
+		return spec.population + spec.subspecies accumulate (get_all_instances(each));
+	}
+
+	action click {
+		target <- #user_location;
 		if (!edit_mode) {
 			return;
 		}
@@ -140,7 +128,6 @@ global {
 		if (empty(moved_agents)) {
 			list<moveable> selected_agents <- get_all_instances(moveable) overlapping (zone at_location #user_location);
 			moved_agents <- selected_agents;
-			write moved_agents;
 			ask selected_agents {
 				difference <- #user_location - location;
 				color <- #olive;
@@ -163,7 +150,7 @@ global {
 
 		can_drop <- true;
 		target <- #user_location;
-		list<moveable> other_agents <- (get_all_instances(moveable)  overlapping (zone at_location #user_location)) - moved_agents;
+		list<moveable> other_agents <- (get_all_instances(moveable) overlapping (zone at_location #user_location)) - moved_agents;
 		geometry occupied <- geometry(other_agents);
 		ask moved_agents {
 			location <- #user_location - difference;
@@ -188,6 +175,7 @@ species traffic_light parent: moveable {
 	int nbgreen;
 	rgb color_fire;
 	int counter <- 0;
+
 	reflex change {
 		if (color_fire = #red and counter > nbred) {
 			counter <- 0;
@@ -388,7 +376,16 @@ experiment show_example type: gui {
 		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
 		type: opengl
 		//		background:#lightgray
-		{
+		{ 
+			overlay position: { 4, 3} size: { 80 #px, 20 #px } background: # black transparency: 0.1 border: #black rounded: true
+            {
+            	//for each possible type, we draw a square with the corresponding color and we write the name of the type
+               if(edit_mode)
+                {
+                    draw "Editing" at: { 20#px,10#px } color: #white border: #black; 
+                }
+
+            }
 		//			species water;
 		//						grid cell refresh: false;
 			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.007} transparency: 0.0;
