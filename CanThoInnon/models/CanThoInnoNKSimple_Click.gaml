@@ -21,7 +21,7 @@ global {
 	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
 	graph road_graph;
 	bool draw_perception <- false;
-	bool show_building_names <- false;
+	bool show_building_names <- true;
 	float max_value;
 	float min_value;
 	bool recompute_path <- false;
@@ -33,29 +33,44 @@ global {
 	geometry zone <- circle(5);
 	bool can_drop;
 	bool edit_mode <- false;
+	string TYPE_MOTORBIKE <- "motorbyke";
+	string TYPE_CAR <- "car";
+	string TYPE_TRUCK <- "truck";
 
+	// COEFF Vehicule
+	float MOTORBIKE_COEF <- 1.0;
+	float CAR_COEF <- 2.0;
+	float TRUCK_COEF <- 2.0;
+	map<string, float> coeff_vehicle <- map([TYPE_MOTORBIKE::MOTORBIKE_COEF, TYPE_CAR::CAR_COEF, TYPE_TRUCK::TRUCK_COEF]);
+	float coeff_building <- 1.0;
+	list<pollutant_grid> active_cells;
+	float decrease_coeff <- 0.5;
+	// Pollution en CO2
+	map<string, map<int, float>>
+	pollution_rate <- ["essence"::[10::98.19, 20::69.17, 30::56.32, 40::49.3, 50::45.29], "diesel"::[10::201.74, 20::152, 30::127.82, 40::114.29, 50::106.48]];
 	font regular <- font("Arial", 14, #bold);
+
 	init {
 		ask cell {
-			grid_value <- -grid_value; //+ 33;
+			subsidence <- subsidence + grid_value;
 		}
-
-		max_value <- cell max_of (each.grid_value);
-		min_value <- cell min_of (each.grid_value);
-		//		write max_value;
-		//		write min_value;
-		ask cell {
-		//			grid_value <- grid_value;
-		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
-		//			color <- hsb(35 / 360, val * val, 0.64);
-			float val <- ((grid_value - min_value) / (max_value - min_value));
-			color <- hsb(222 / 360, val, 0.3);
-			//			color<-rgb(0,0,val*255);
-		}
-
-		//		create water {
-		//			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+		//
+		//		max_value <- cell max_of (each.grid_value);
+		//		min_value <- cell min_of (each.grid_value);
+		//		//		write max_value;
+		//		//		write min_value;
+		//		ask cell {
+		//		//			grid_value <- grid_value;
+		//		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
+		//		//			color <- hsb(35 / 360, val * val, 0.64);
+		//			float val <- ((grid_value - min_value) / (max_value - min_value));
+		//			color <- hsb(222 / 360, val, 0.3);
+		//			//			color<-rgb(0,0,val*255);
 		//		}
+		create water {
+			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+		}
+
 		create traffic_light from: node_shp {
 		//		//			is_traffic_signal <- true;
 		//			is_traffic_signal <- flip(0.1) ? true : false;
@@ -70,6 +85,11 @@ global {
 
 		//		tttt <- traffic_light where (each.is_traffic_signal);
 		create road from: road_shp {
+		}
+
+		active_cells <- pollutant_grid where (!empty(road overlapping each));
+		ask active_cells {
+			active <- true;
 		}
 
 		road_weights <- road as_map (each::each.shape.perimeter);
@@ -89,6 +109,7 @@ global {
 		}
 
 		create vehicle number: nbvehicle {
+			type <- TYPE_MOTORBIKE;
 			location <- any_location_in(road_geom);
 			//			location <- any_location_in(any(road));
 			//			target <- any_location_in(any(road));
@@ -202,6 +223,7 @@ species vehicle skills: [moving] parent: moveable {
 	rgb color;
 	string type;
 	int nb_people;
+	string carburant <- "essence";
 	float wsize <- 5.0 + rnd(4);
 	float hsize <- 2.0 + rnd(4);
 	bool insane <- flip(0.0001) ? true : false;
@@ -214,6 +236,22 @@ species vehicle skills: [moving] parent: moveable {
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
+	float pollution_from_speed {
+		float returnedValue <- -1.0;
+		loop spee over: pollution_rate[carburant].keys {
+			if (real_speed < spee) {
+				returnedValue <- pollution_rate[carburant][spee];
+				break;
+			}
+
+		}
+
+		return (returnedValue != -1.0) ? returnedValue : pollution_rate[carburant][last(pollution_rate[carburant].keys)];
+	}
+
+	float get_pollution {
+		return pollution_from_speed() * coeff_vehicle[type];
+	}
 
 	reflex move when: target != nil {
 		TL_area <- (cone(heading - 15, heading + 15) intersection world.shape) intersection (circle(perception_distance));
@@ -303,7 +341,7 @@ species road {
 	float coeff_traffic <- 1.0 update: 1 + (float(length(vehicle at_distance 10.0)) / shape.perimeter * 20 / nbLanes);
 
 	aspect default {
-		draw shape + 5 empty: false color: #gray;
+		draw shape + 5 empty: false color: #darkgray;
 	}
 
 	aspect traffic_jam {
@@ -315,53 +353,104 @@ species road {
 
 }
 
-//species water {
-//	float wlevel <- -14.0;
-//	int incr <- 1;
-//	geometry shape <- box(world.shape.width, world.shape.height, 1);
-//
-//	reflex innon {
-//		wlevel <- wlevel + incr * 0.05;
-//		if (wlevel > -9) {
-//			incr <- -1;
-//		}
-//
-//		if (wlevel < -14.0) {
-//			incr <- 1;
-//		}
-//
-//		location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
-//	}
-//
-//	aspect default {
-//		draw shape color: #blue at: location;
-//	}
-//
-//}
+species water {
+	float wlevel <- -11.0;
+	int incr <- 1;
+	geometry shape <- box(world.shape.width, world.shape.height, 1);
+
+	reflex innon {
+		wlevel <- wlevel + incr * 0.05;
+		if (wlevel > -4) {
+			incr <- -1;
+		}
+
+		if (wlevel < -11.0) {
+			incr <- 1;
+		}
+
+		location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
+	}
+
+	aspect default {
+		draw shape color: #darkblue at: location;
+	}
+
+}
+
 species building parent: moveable {
 	float depth;
 	string osm_name;
 	file texture;
-
-	reflex gravity {
-		cell c <- first(cell overlapping self);
-		if (c != nil) {
-			c.grid_value <- c.grid_value - (shape.perimeter / 100);
-		}
-
+	float get_weight {
+		return (shape.area / 10000) * coeff_building;
 	}
 
+	//	reflex gravity {
+	//		cell c <- first(cell overlapping self);
+	//		if (c != nil) {
+	//			c.grid_value <- c.grid_value - (shape.perimeter / 100);
+	//		}
+	//
+	//	}
 	aspect default {
-		draw shape depth: depth texture: [roof_texture.path, texture.path] color: rnd_color(255);
+		draw shape depth: depth color: #gray; //texture: [roof_texture.path, texture.path]
 		if (show_building_names and osm_name index_of "osm_agent" != 0) {
-			draw osm_name font:regular size: 0.010 color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
+			draw osm_name font: regular size: 0.010 color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
 		}
 
 	}
 
 }
 
-grid cell file: grid_data {
+grid pollutant_grid height: 50 width: 50 neighbors: 8 /*schedules: active_cells*/ {
+	rgb color <- #black;
+	bool active <- false;
+	float pollution;
+
+	reflex pollution_increase when: active {
+		list<vehicle> people_on_cell <- vehicle overlapping self;
+		pollution <- pollution + sum(people_on_cell accumulate (each.get_pollution()));
+	}
+
+	reflex diffusion {
+		ask neighbors {
+			pollution <- pollution + 0.05 * myself.pollution;
+		}
+
+		pollution <- pollution * (1 - 8 * 0.05);
+	}
+
+	reflex update {
+		pollution <- pollution * decrease_coeff;
+		color <- rgb(255 * pollution / 1000, 0, 0);
+	}
+
+}
+
+grid cell file: grid_data neighbors: 8 {
+	rgb color <- #black;
+	bool active <- true;
+	float subsidence <- 1.0;
+
+	reflex pollution_increase when: active {
+		list<building> building_on_cell <- building overlapping self;
+		subsidence <- subsidence < 0 ? 0 : subsidence - (sum(building_on_cell accumulate (each.get_weight())) * 0.1);
+	}
+
+	reflex diffusion {
+		ask neighbors {
+			subsidence <- subsidence < 0 ? 0 : subsidence - 0.0005 * myself.subsidence;
+		}
+
+		//		subsidence <- subsidence * (1 - 8 * 0.05);
+	}
+
+	reflex update {
+	//		subsidence <- subsidence * decrease_coeff;
+	//		color <- rgb(50,50,255 * subsidence / 1000);
+		color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
+	}
+
 }
 
 experiment show_example type: gui {
@@ -371,7 +460,31 @@ experiment show_example type: gui {
 	//			species road;
 	//			species road aspect: traffic_jam ;
 	//		}
-		display test
+		display subsidence background: #black
+		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
+		type: opengl
+		//		background:#lightgray
+		{
+			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
+			//for each possible type, we draw a square with the corresponding color and we write the name of the type
+				if (edit_mode) {
+					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
+				}
+
+			}
+			//						grid cell refresh: false;
+			species traffic_light;
+			species road refresh: false; // position: {0, 0, 0.002};
+			species building refresh: true;
+			species vehicle; //position: {0, 0, 0.002};
+			grid cell elevation: subsidence position: {0, 0, -0.004} transparency: 0.0 triangulation: true;
+			species water transparency: 0.9;
+			//			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
+			event mouse_move action: move;
+			event mouse_up action: click;
+		}
+
+		display polution background: #black
 		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
 		type: opengl
 		//		background:#lightgray
@@ -386,11 +499,12 @@ experiment show_example type: gui {
 			}
 			//			species water;
 			//						grid cell refresh: false;
-			grid cell elevation: grid_value triangulation: true refresh: true position: {0, 0, -0.007} transparency: 0.0;
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: false;
 			species vehicle; //position: {0, 0, 0.002};
+			//			grid cell elevation: grid_value  position: {0, 0, -0.007} transparency: 0.4 triangulation: true;
+			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
 			event mouse_move action: move;
 			event mouse_up action: click;
 		}
