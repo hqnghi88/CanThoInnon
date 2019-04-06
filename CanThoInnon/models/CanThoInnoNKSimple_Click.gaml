@@ -104,6 +104,25 @@ global {
 			nbgreen <- 15 + rnd(40);
 		} }
 
+	user_command "Create a building" {
+		if (!edit_mode) {
+			return;
+		}
+		map
+	answers <- user_input("Amount", ["Amount"::1]);
+	int num <- int(answers["Amount"]); 
+	
+
+		create building number: num  {
+			osm_name<-"osm_agent"+self;
+			shape <- any(building);
+			location<-any_location_in(circle(num*2) at_location target);
+			depth <- (10 + (rnd(20)) / 150 * shape.perimeter);
+			texture <- textures[rnd(9)];
+		}
+
+	}
+
 	user_command "Enter edit mode" {
 		edit_mode <- true;
 	}
@@ -387,7 +406,7 @@ experiment show_example type: gui {
 
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
-			species building refresh: true;
+			species building;
 			species vehicle; //position: {0, 0, 0.002};
 			grid cell elevation: subsidence position: {0, 0, -0.004} transparency: 0.0 triangulation: true;
 			species water transparency: 0.9;
