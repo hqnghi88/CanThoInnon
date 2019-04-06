@@ -53,37 +53,21 @@ global {
 	init {
 		ask cell {
 			subsidence <- subsidence + grid_value;
-		}
-		//
-		//		max_value <- cell max_of (each.grid_value);
-		//		min_value <- cell min_of (each.grid_value);
-		//		//		write max_value;
-		//		//		write min_value;
-		//		ask cell {
-		//		//			grid_value <- grid_value;
-		//		//			float val <- (1 - (grid_value - min_value) / ((max_value - min_value) + 10));
-		//		//			color <- hsb(35 / 360, val * val, 0.64);
-		//			float val <- ((grid_value - min_value) / (max_value - min_value));
-		//			color <- hsb(222 / 360, val, 0.3);
-		//			//			color<-rgb(0,0,val*255);
-		//		}
+			color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
+		} 
 		create water {
 			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
 		}
 
-		create traffic_light from: node_shp {
-		//		//			is_traffic_signal <- true;
-		//			is_traffic_signal <- flip(0.1) ? true : false;
+		create traffic_light from: node_shp { 
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
 			nbgreen <- 15 + rnd(40);
-		}
-		//		ask traffic_light {do die;}
+		} 
 		ask (length(traffic_light) * 0.9) among traffic_light {
 			do die;
 		}
-
-		//		tttt <- traffic_light where (each.is_traffic_signal);
+ 
 		create road from: road_shp {
 		}
 
@@ -93,15 +77,7 @@ global {
 		}
 
 		road_weights <- road as_map (each::each.shape.perimeter);
-		road_geom <- union(road accumulate (each.shape));
-		//		ask road{
-		//			loop p over:shape.points{
-		//				cell c<- cell at p;
-		//				if(c!=nil){					
-		//					p<- p add_z c.grid_value;
-		//				}
-		//			} 
-		//		}
+		road_geom <- union(road accumulate (each.shape)); 
 		road_graph <- as_edge_graph(list(road));
 		create building from: building_shp {
 			depth <- (10 + (rnd(20)) / 150 * shape.perimeter);
@@ -110,9 +86,7 @@ global {
 
 		create vehicle number: nbvehicle {
 			type <- TYPE_MOTORBIKE;
-			location <- any_location_in(road_geom);
-			//			location <- any_location_in(any(road));
-			//			target <- any_location_in(any(road));
+			location <- any_location_in(road_geom); 
 		}
 
 	}
@@ -121,9 +95,7 @@ global {
 		if (!edit_mode) {
 			return;
 		}
-		//		geometry available_space <- (zone at_location target) - (union(moved_agents) + 10);
 		create traffic_light number: 1 with: (location: target) {
-		//			is_traffic_signal <- flip(0.01)?true:false;
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
 			nbgreen <- 15 + rnd(40);
@@ -171,17 +143,9 @@ global {
 		}
 
 		can_drop <- true;
-		target <- #user_location;
-		//		list<moveable> other_agents <- list<moveable>((get_all_instances(moveable) overlapping (zone at_location #user_location)) - moved_agents);
-		//		geometry occupied <- geometry(other_agents);
+		target <- #user_location; 
 		ask moved_agents {
-			location <- #user_location - difference;
-			//			if (occupied intersects self) {
-			//				color <- #red;
-			//				can_drop <- false;
-			//			} else {
-			//				color <- #olive;
-			//			}
+			location <- #user_location - difference; 
 
 		}
 
@@ -232,7 +196,7 @@ species vehicle skills: [moving] parent: moveable {
 	//	float ccsp <- csp;
 	float perception_distance <- wsize * 4;
 	geometry shape <- rectangle(wsize, hsize);
-	geometry TL_area; //<- (cone(heading - 10, heading + 10) intersection world.shape) intersection (circle(perception_distance));
+	geometry TL_area;
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
@@ -256,40 +220,27 @@ species vehicle skills: [moving] parent: moveable {
 	reflex move when: target != nil {
 		TL_area <- (cone(heading - 15, heading + 15) intersection world.shape) intersection (circle(perception_distance));
 		list<traffic_light> redlight <- (((traffic_light) at_distance perception_distance) where (each.color_fire = #red)) overlapping TL_area;
-		//		list v <- (vehicle at_distance (perception_distance)) overlapping TL_area;
 		list<vehicle> v <- (vehicle at_distance (perception_distance)) where (!(each.TL_area overlaps TL_area) and (each overlaps TL_area));
 		if (length(redlight) > 0) {
-			waiting_traffic_light <- true;
-			//			csd <- #red;
+			waiting_traffic_light <- true; 
 			return;
 		}
 
 		if (!waiting_traffic_light and length(v where (each.waiting_traffic_light)) > 0) {
-			waiting_traffic_light <- true;
-			//			csd <- #red;
+			waiting_traffic_light <- true; 
 			return;
 		}
 
 		waiting_traffic_light <- false;
 		if (length(v) > 0) {
 			csd <- #darkgreen;
-			if (csp = speed) {
-			//				if (csp = ccsp) {
-			//					ccsp <- v min_of each.csp;
-			//				}
+			if (csp = speed) { 
 				csp <- (v min_of each.csp);
-			}
+			} 
 
-			//			if (ccsp > 6) {
-			//				ccsp <- ccsp - 5;
-			//			}
-
-		} else {
-		//			if(csp<sp){
+		} else { 
 			csd <- #green;
-			csp <- speed;
-			//			ccsp <- csp;
-			//			}
+			csp <- speed; 
 		}
 
 		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
@@ -301,8 +252,7 @@ species vehicle skills: [moving] parent: moveable {
 	}
 
 	reflex choose_target when: target = nil {
-		target <- any_location_in(road_geom);
-		//		target <-any(building).location;
+		target <- any_location_in(road_geom); 
 	}
 
 	aspect default {
@@ -314,28 +264,7 @@ species vehicle skills: [moving] parent: moveable {
 	}
 
 }
-
-//species people skills: [moving] {
-//	float size <- 1.0 + rnd(2);
-//	float sp <- 20 + rnd(3.0);
-//	geometry shape <- cube(size);
-//	float range <- size * 2;
-//	int repulsion_strength min: 1 <- 5;
-//	point target;
-//
-//	reflex ss {
-//		do goto target: target on: road_graph speed: sp;
-//		if (target != nil and location distance_to target <= sp) {
-//			target <- any_location_in(one_of(road));
-//		}
-//
-//	}
-//
-//	aspect default {
-//		draw shape color: #yellow;
-//	}
-//
-//}
+ 
 species road {
 	int nbLanes <- 1;
 	float coeff_traffic <- 1.0 update: 1 + (float(length(vehicle at_distance 10.0)) / shape.perimeter * 20 / nbLanes);
@@ -385,17 +314,10 @@ species building parent: moveable {
 		return (shape.area / 10000) * coeff_building;
 	}
 
-	//	reflex gravity {
-	//		cell c <- first(cell overlapping self);
-	//		if (c != nil) {
-	//			c.grid_value <- c.grid_value - (shape.perimeter / 100);
-	//		}
-	//
-	//	}
 	aspect default {
 		draw shape depth: depth color: #gray; //texture: [roof_texture.path, texture.path]
-		if (show_building_names and osm_name index_of "osm_agent" != 0) {
-			draw osm_name font: regular size: 0.010 color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
+		if (#zoom > 8 and show_building_names and osm_name index_of "osm_agent" != 0) {
+			draw osm_name anchor: #center font: regular color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
 		}
 
 	}
@@ -440,14 +362,10 @@ grid cell file: grid_data neighbors: 8 {
 	reflex diffusion {
 		ask neighbors {
 			subsidence <- subsidence < 0 ? 0 : subsidence - 0.0005 * myself.subsidence;
-		}
-
-		//		subsidence <- subsidence * (1 - 8 * 0.05);
+		}  
 	}
 
-	reflex update {
-	//		subsidence <- subsidence * decrease_coeff;
-	//		color <- rgb(50,50,255 * subsidence / 1000);
+	reflex update { 
 		color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
 	}
 
@@ -455,25 +373,17 @@ grid cell file: grid_data neighbors: 8 {
 
 experiment show_example type: gui {
 	parameter "Show Building Name" var: show_building_names;
-	output {
-	//		display traffic_jam_display {
-	//			species road;
-	//			species road aspect: traffic_jam ;
-	//		}
+	output { 
 		display subsidence background: #black
-		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
-		type: opengl
-		//		background:#lightgray
+ 		type: opengl 
 		{
 			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
-			//for each possible type, we draw a square with the corresponding color and we write the name of the type
-				if (edit_mode) {
+ 				if (edit_mode) {
 					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
 				}
 
 			}
-			//						grid cell refresh: false;
-			species traffic_light;
+ 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building refresh: true;
 			species vehicle; //position: {0, 0, 0.002};
@@ -485,26 +395,19 @@ experiment show_example type: gui {
 		}
 
 		display polution background: #black
-		//			camera_pos: {356.5227,1917.5553,285.3626} camera_look_pos: {750.7957,988.7062,-62.0666} camera_up_vector: {0.1272,0.2997,0.9455}
-		type: opengl
-		//		background:#lightgray
-		{
+ 		type: opengl
+ 		{
 			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
-			//for each possible type, we draw a square with the corresponding color and we write the name of the type
-				draw "Trường Châu Văn Liêm" at: {20 #px, 10 #px} color: #white border: #black;
-				if (edit_mode) {
+ 				if (edit_mode) {
 					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
 				}
 
-			}
-			//			species water;
-			//						grid cell refresh: false;
+			} 
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
-			species building refresh: false;
+			species building;
 			species vehicle; //position: {0, 0, 0.002};
-			//			grid cell elevation: grid_value  position: {0, 0, -0.007} transparency: 0.4 triangulation: true;
-			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
+ 			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
 			event mouse_move action: move;
 			event mouse_up action: click;
 		}
