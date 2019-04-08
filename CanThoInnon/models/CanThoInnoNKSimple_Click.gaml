@@ -1,9 +1,3 @@
-/**
-* Name: GeoTIFF file to Grid of Cells 
-* Author:  Patrick Taillandier
-* Description: Model which shows how to create a grid of cells by using a GeoTIFF File. 
-* Tags:  load_file, tif, gis, grid
-*/
 model CanThoInno
 
 global {
@@ -20,8 +14,7 @@ global {
 	list
 	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
 	graph road_graph;
-	bool draw_perception <- false;
-	bool show_building_names <- true;
+	bool draw_perception <- false; 
 	float max_value;
 	float min_value;
 	bool recompute_path <- false;
@@ -29,7 +22,7 @@ global {
 	int nbvehicle <- 300;
 	map<road, float> road_weights;
 	list<moveable> moved_agents;
-	point target;
+	point mouse_target;
 	geometry zone <- circle(5);
 	bool can_drop;
 	bool edit_mode <- false;
@@ -93,12 +86,22 @@ global {
 
 	}
 
+	user_command "Create a vehicle" {
+		if (!edit_mode) {
+			return;
+		}
+
+		create vehicle number: 1 {
+			type <- TYPE_MOTORBIKE;
+			location <- mouse_target;
+		} }
+
 	user_command "Create a traffic light" {
 		if (!edit_mode) {
 			return;
 		}
 
-		create traffic_light number: 1 with: (location: target) {
+		create traffic_light number: 1 with: (location: mouse_target) {
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
 			nbgreen <- 15 + rnd(40);
@@ -108,15 +111,13 @@ global {
 		if (!edit_mode) {
 			return;
 		}
-		map
-	answers <- user_input("Amount", ["Amount"::1]);
-	int num <- int(answers["Amount"]); 
-	
 
-		create building number: num  {
-			osm_name<-"osm_agent"+self;
+		map answers <- user_input("Amount", ["Amount"::1]);
+		int num <- int(answers["Amount"]);
+		create building number: num {
+			osm_name <- "osm_agent" + self;
 			shape <- any(building);
-			location<-any_location_in(circle(num*2) at_location target);
+			location <- any_location_in(circle(num * 2) at_location mouse_target);
 			depth <- (10 + (rnd(20)) / 150 * shape.perimeter);
 			texture <- textures[rnd(9)];
 		}
@@ -136,7 +137,7 @@ global {
 	}
 
 	action click {
-		target <- #user_location;
+		mouse_target <- #user_location;
 		if (!edit_mode) {
 			return;
 		}
@@ -165,7 +166,7 @@ global {
 		}
 
 		can_drop <- true;
-		target <- #user_location;
+//		mouse_target <- #user_location;
 		ask moved_agents {
 			location <- #user_location - difference;
 		}
@@ -337,7 +338,7 @@ species building parent: moveable {
 
 	aspect default {
 		draw shape depth: depth color: #gray; //texture: [roof_texture.path, texture.path]
-		if (#zoom > 8 and show_building_names and osm_name index_of "osm_agent" != 0) {
+		if (#zoom > 6 and osm_name index_of "osm_agent" != 0) {
 			draw osm_name anchor: #center font: regular color: #yellow at: {location.x, location.y, (depth + 1)} perspective: false;
 		}
 
@@ -393,8 +394,7 @@ grid cell file: grid_data neighbors: 8 {
 
 }
 
-experiment show_example type: gui {
-	parameter "Show Building Name" var: show_building_names;
+experiment show_example type: gui {  
 	output {
 		display subsidence background: #black type: opengl {
 			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
@@ -403,6 +403,7 @@ experiment show_example type: gui {
 				}
 
 			}
+
 
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};

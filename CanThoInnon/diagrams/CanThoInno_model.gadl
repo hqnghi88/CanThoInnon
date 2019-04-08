@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:gama="http://gama/1.0" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="gamaDiagram" name="CanThoInno_model" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.1/@link /0/@children.0/@children.2/@link /0/@children.0/@children.3/@link /0/@children.1/@link /0/@children.1/@children.0/@link /0/@children.1/@children.1/@link /0/@connections.0/@link /0/@children.2/@link /0/@children.2/@children.0/@link /0/@children.2/@children.1/@link /0/@connections.1/@link /0/@children.3/@link /0/@children.3/@children.1/@link /0/@children.3/@children.2/@link /0/@connections.2/@link /0/@children.4/@link /0/@children.4/@children.0/@link /0/@children.4/@children.1/@link /0/@connections.3/@link /0/@children.5/@link /0/@children.5/@children.0/@link /0/@children.5/@children.1/@link /0/@connections.4/@link /0/@children.6/@link /0/@children.6/@children.1/@link /0/@children.6/@children.2/@link /0/@children.6/@children.3/@link /0/@connections.5/@link /0/@children.7/@link /0/@children.7/@children.0/@link /0/@children.7/@children.1/@link /0/@connections.6/@link /0/@children.8/@link /0/@children.8/@children.0/@link /0/@children.8/@children.1/@link /0/@connections.7/@link /0/@children.9/@link /0/@children.9/@children.0/@link /0/@children.9/@children.1/@link /0/@connections.8/@link /0/@children.10/@link /0/@children.10/@children.0/@link /0/@children.10/@children.1/@link /0/@connections.9/@link /0/@children.11/@link /0/@children.11/@children.0/@link /0/@children.11/@children.1/@link /0/@connections.10/@link /0/@children.12/@link /0/@children.12/@children.1/@link /0/@children.12/@children.2/@link /0/@children.12/@children.3/@link /0/@connections.11/@link /0/@children.13/@link /0/@children.13/@children.0/@link /0/@children.13/@children.1/@link /0/@connections.12/@link /0/@children.14/@link /0/@children.14/@children.0/@link /0/@children.14/@children.1/@link /0/@connections.13/@link /0/@children.15/@link /0/@children.15/@children.0/@link /0/@children.15/@children.1/@link /0/@connections.14/@link /0/@children.16/@link /0/@children.16/@children.1/@link /0/@children.16/@children.2/@link /0/@children.16/@children.3/@link /0/@connections.15/@link /0/@children.17/@link /0/@children.17/@children.0/@link /0/@children.17/@children.1/@link /0/@connections.16/@link /0/@children.18/@link /0/@children.18/@children.0/@link /0/@children.18/@children.1/@link /0/@connections.17/@link /0/@children.19/@link /0/@children.19/@children.1/@link /0/@children.19/@children.2/@link /0/@children.19/@children.3/@link /0/@connections.18/@link /0/@children.20/@link /0/@children.20/@children.0/@link /0/@children.20/@children.1/@link /0/@connections.19/@link /0/@children.21/@link /0/@children.21/@children.0/@link /0/@children.21/@children.1/@link /0/@connections.20/@link /0/@children.22/@link /0/@children.22/@children.1/@link /0/@children.22/@children.2/@link /0/@children.22/@children.3/@link /0/@connections.21/@link /0/@children.23/@link /0/@children.23/@children.0/@link /0/@children.23/@children.1/@link /0/@connections.22/@link /0/@children.24/@link /0/@children.24/@children.0/@link /0/@children.24/@children.1/@link /0/@connections.23/@link /0/@children.25/@link /0/@children.25/@children.1/@link /0/@children.25/@children.2/@link /0/@children.25/@children.3/@link /0/@connections.24/@link /0/@children.26/@link /0/@children.26/@children.0/@link /0/@children.26/@children.1/@link /0/@connections.25/@link /0/@children.27/@link /0/@children.27/@children.0/@link /0/@children.27/@children.1/@link /0/@connections.26/@link /0/@children.28/@link /0/@children.28/@children.1/@link /0/@children.28/@children.2/@link /0/@children.28/@children.3/@link /0/@connections.27/@link /0/@children.29/@link /0/@children.29/@children.0/@link /0/@children.29/@children.1/@link /0/@connections.28/@link /0/@children.30/@link /0/@children.30/@children.0/@link /0/@children.30/@children.1/@link /0/@connections.29/@link /0/@children.31/@link /0/@children.31/@children.0/@link /0/@children.31/@children.1/@link /0/@connections.30/@link /0/@children.32/@link /0/@children.32/@children.1/@link /0/@children.32/@children.2/@link /0/@children.32/@children.3/@link /0/@connections.31/@link" version="0.15.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="100" x="1655" y="30" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/1"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0 /0/@connections.1 /0/@connections.2 /0/@connections.5 /0/@connections.11 /0/@connections.15 /0/@connections.18 /0/@connections.21 /0/@connections.24 /0/@connections.27 /0/@connections.31"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="world"/>
+        <link businessObjects="/1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="685" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="grid_file grid_data&#xA;shape_file road_shp&#xA;shape_file node_shp&#xA;shape_file building_shp&#xA;geometry shape&#xA;image_file roof_texture&#xA;list&lt;image_file> textures&#xA;graph road_graph&#xA;bool draw_perception&#xA;bool show_building_names&#xA;float max_value&#xA;float min_value&#xA;bool recompute_path&#xA;geometry road_geom&#xA;int nbvehicle&#xA;map&lt;road, float> road_weights&#xA;list&lt;moveable> moved_agents&#xA;point mouse_target&#xA;geometry zone&#xA;bool can_drop&#xA;bool edit_mode&#xA;string TYPE_MOTORBIKE&#xA;string TYPE_CAR&#xA;string TYPE_TRUCK&#xA;float MOTORBIKE_COEF&#xA;float CAR_COEF&#xA;float TRUCK_COEF&#xA;map&lt;string, float> coeff_vehicle&#xA;float coeff_building&#xA;list&lt;pollutant_grid> active_cells&#xA;float decrease_coeff&#xA;map&lt;string, map&lt;int, float>> pollution_rate&#xA;font regular&#xA;"/>
+        <link businessObjects="/1"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/1"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.5" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="340" x="360" y="-407"/>
+      <link businessObjects="/2"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.0"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="click"/>
+        <link businessObjects="/2"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.actionlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/2"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.5" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="340" x="570" y="-407"/>
+      <link businessObjects="/4"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.1"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="get_all_instances"/>
+        <link businessObjects="/4"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.actionlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/4"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.7" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="340" x="1060" y="-407" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/6"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.3 /0/@connections.4" incomingConnections="/0/@connections.2"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="150" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="show_example"/>
+        <link businessObjects="/6"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="5" y="3" id="idees.gama.guixplink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/6"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.8" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="140" height="50" x="740" y="-595"/>
+      <link businessObjects="/8"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.3"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="140" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="subsidence"/>
+        <link businessObjects="/8"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.displaylink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/8"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.8" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="140" height="50" x="940" y="-595"/>
+      <link businessObjects="/10"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.4"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="140" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="polution"/>
+        <link businessObjects="/10"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.displaylink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/10"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="1270" y="-407" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/12"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.6 /0/@connections.7 /0/@connections.8 /0/@connections.9 /0/@connections.10" incomingConnections="/0/@connections.5"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="vehicle"/>
+        <link businessObjects="/12"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="425" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="point difference&#xA;geometry current_edge&#xA;float real_speed&#xA;float speed&#xA;point destination&#xA;float heading&#xA;path current_path&#xA;string type&#xA;int nb_people&#xA;string carburant&#xA;float wsize&#xA;float hsize&#xA;bool insane&#xA;float csp&#xA;float perception_distance&#xA;geometry shape&#xA;geometry TL_area&#xA;point target&#xA;rgb csd&#xA;bool waiting_traffic_light&#xA;"/>
+        <link businessObjects="/12"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/12"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.5" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="999" y="-740"/>
+      <link businessObjects="/14"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.6"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="pollution_from_speed"/>
+        <link businessObjects="/14"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.actionlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/14"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.5" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1209" y="-740"/>
+      <link businessObjects="/16"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.7"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="get_pollution"/>
+        <link businessObjects="/16"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.actionlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/16"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1361" y="-650"/>
+      <link businessObjects="/18"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.8"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="move"/>
+        <link businessObjects="/18"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/18"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1571" y="-650"/>
+      <link businessObjects="/20"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.9"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="choose_target"/>
+        <link businessObjects="/20"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/20"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1781" y="-650"/>
+      <link businessObjects="/22"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.10"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="default"/>
+        <link businessObjects="/22"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/22"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.15" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="1655" y="280" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/24"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.12 /0/@connections.13 /0/@connections.14" incomingConnections="/0/@connections.11"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="pollutant_grid"/>
+        <link businessObjects="/24"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="185" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="list&lt;float> bands&#xA;int grid_y&#xA;float grid_value&#xA;rgb color&#xA;list&lt;pollutant_grid> neighbors&#xA;int grid_x&#xA;bool active&#xA;float pollution&#xA;"/>
+        <link businessObjects="/24"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subgridlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/24"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1515" y="755"/>
+      <link businessObjects="/26"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.12"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="pollution_increase"/>
+        <link businessObjects="/26"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/26"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1725" y="755"/>
+      <link businessObjects="/28"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.13"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="diffusion"/>
+        <link businessObjects="/28"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/28"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="1935" y="755"/>
+      <link businessObjects="/30"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.14"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="update"/>
+        <link businessObjects="/30"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/30"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="2110" y="-420" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/32"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.16 /0/@connections.17" incomingConnections="/0/@connections.15"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="road"/>
+        <link businessObjects="/32"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="65" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="int nbLanes&#xA;float coeff_traffic&#xA;"/>
+        <link businessObjects="/32"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/32"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="2020" y="-644"/>
+      <link businessObjects="/34"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.16"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="traffic_jam"/>
+        <link businessObjects="/34"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/34"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="2230" y="-644"/>
+      <link businessObjects="/36"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.17"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="default"/>
+        <link businessObjects="/36"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/36"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="2530" y="-420" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/38"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.19 /0/@connections.20" incomingConnections="/0/@connections.18"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="traffic_light"/>
+        <link businessObjects="/38"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="145" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="point difference&#xA;geometry shape&#xA;int nbred&#xA;int nbgreen&#xA;rgb color_fire&#xA;int counter&#xA;"/>
+        <link businessObjects="/38"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/38"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="2470" y="-626"/>
+      <link businessObjects="/40"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.19"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="change"/>
+        <link businessObjects="/40"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/40"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="2680" y="-626"/>
+      <link businessObjects="/42"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.20"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="default"/>
+        <link businessObjects="/42"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/42"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="2950" y="-420" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/44"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.22 /0/@connections.23" incomingConnections="/0/@connections.21"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="water"/>
+        <link businessObjects="/44"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="85" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="float wlevel&#xA;int incr&#xA;geometry shape&#xA;"/>
+        <link businessObjects="/44"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/44"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="2950" y="-626"/>
+      <link businessObjects="/46"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.22"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="innon"/>
+        <link businessObjects="/46"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/46"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="3160" y="-626"/>
+      <link businessObjects="/48"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.23"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="default"/>
+        <link businessObjects="/48"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/48"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="3370" y="-420" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/50"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.25 /0/@connections.26" incomingConnections="/0/@connections.24"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="building"/>
+        <link businessObjects="/50"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="105" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="point difference&#xA;float depth&#xA;string osm_name&#xA;file texture&#xA;"/>
+        <link businessObjects="/50"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/50"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.5" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="3431" y="-580"/>
+      <link businessObjects="/52"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.25"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="get_weight"/>
+        <link businessObjects="/52"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.actionlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/52"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.14" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="3641" y="-580"/>
+      <link businessObjects="/54"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.26"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="default"/>
+        <link businessObjects="/54"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.aspectlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/54"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.15" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="3790" y="-420" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/56"/>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.28 /0/@connections.29 /0/@connections.30" incomingConnections="/0/@connections.27"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="cell"/>
+        <link businessObjects="/56"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="185" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="list&lt;float> bands&#xA;int grid_y&#xA;float grid_value&#xA;rgb color&#xA;list&lt;cell> neighbors&#xA;int grid_x&#xA;bool active&#xA;float subsidence&#xA;"/>
+        <link businessObjects="/56"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subgridlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/56"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="3870" y="-580"/>
+      <link businessObjects="/58"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.28"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="pollution_increase"/>
+        <link businessObjects="/58"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/58"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="4080" y="-580"/>
+      <link businessObjects="/60"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.29"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="diffusion"/>
+        <link businessObjects="/60"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/60"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Ellipse" background="/0/@colors.12" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="150" height="50" x="4290" y="-580"/>
+      <link businessObjects="/62"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.30"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="150" height="50" font="/0/@fonts.2" horizontalAlignment="ALIGNMENT_CENTER" value="update"/>
+        <link businessObjects="/62"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="10" y="17" id="idees.gama.reflexlink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/62"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="220" height="340" x="780" y="-407" cornerHeight="5" cornerWidth="5"/>
+      <link businessObjects="/64"/>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.31"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="220" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="moveable"/>
+        <link businessObjects="/64"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="220" height="45" x="5" y="25" font="/0/@fonts.2" verticalAlignment="ALIGNMENT_TOP" value="point difference&#xA;"/>
+        <link businessObjects="/64"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="30" height="15" x="5" y="3" id="idees.gama.subspecieslink" stretchH="false" stretchV="false" proportional="false"/>
+        <link businessObjects="/64"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.1/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/3"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the action"/>
+      </connectionDecorators>
+      <bendpoints x="1726" y="130"/>
+      <bendpoints x="1726" y="178"/>
+      <bendpoints x="433" y="178"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/5"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the action"/>
+      </connectionDecorators>
+      <bendpoints x="1652" y="68"/>
+      <bendpoints x="1600" y="68"/>
+      <bendpoints x="1601" y="132"/>
+      <bendpoints x="1144" y="133"/>
+      <bendpoints x="641" y="132"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.3/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0"/>
+      <link businessObjects="/7"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="possible experiment"/>
+      </connectionDecorators>
+      <bendpoints x="1132" y="80"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.3/@anchors.0" end="/0/@children.4/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.9" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/9"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the display"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.3/@anchors.0" end="/0/@children.5/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.9" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/11"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the display"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.6/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/13"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="1680" y="28"/>
+      <bendpoints x="1680" y="-239"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.7/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/15"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the action"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.8/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/17"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the action"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.9/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/19"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.10/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/21"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.6/@anchors.0" end="/0/@children.11/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/23"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.12/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/25"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.12/@anchors.0" end="/0/@children.13/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/27"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.12/@anchors.0" end="/0/@children.14/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/29"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.12/@anchors.0" end="/0/@children.15/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/31"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.16/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/33"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="1764" y="-252"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.16/@anchors.0" end="/0/@children.17/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/35"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.16/@anchors.0" end="/0/@children.18/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/37"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.19/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/39"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="1865" y="28"/>
+      <bendpoints x="1866" y="4"/>
+      <bendpoints x="2045" y="4"/>
+      <bendpoints x="2640" y="4"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.19/@anchors.0" end="/0/@children.20/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/41"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.19/@anchors.0" end="/0/@children.21/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/43"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.22/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/45"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="3056" y="77"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.22/@anchors.0" end="/0/@children.23/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/47"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.22/@anchors.0" end="/0/@children.24/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/49"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.25/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/51"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="1800" y="130"/>
+      <bendpoints x="1801" y="168"/>
+      <bendpoints x="3478" y="168"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.25/@anchors.0" end="/0/@children.26/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/53"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the action"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.25/@anchors.0" end="/0/@children.27/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/55"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the aspect"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.28/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/57"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="2221" y="80"/>
+      <bendpoints x="2220" y="200"/>
+      <bendpoints x="3897" y="200"/>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.28/@anchors.0" end="/0/@children.29/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/59"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.28/@anchors.0" end="/0/@children.30/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/61"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.28/@anchors.0" end="/0/@children.31/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.13" lineWidth="3" filled="false" transparency="0.0"/>
+      <link businessObjects="/63"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="has the reflex"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="/0/@children.0/@anchors.0" end="/0/@children.32/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0"/>
+      <link businessObjects="/65"/>
+      <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" x="10" value="is macro agent of"/>
+      </connectionDecorators>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.11" lineWidth="4" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <bendpoints x="1652" y="105"/>
+      <bendpoints x="1270" y="106"/>
+      <bendpoints x="888" y="105"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors green="255"/>
+    <colors red="255" green="255" blue="210"/>
+    <colors/>
+    <colors red="255" green="204" blue="153"/>
+    <colors red="252" green="207" blue="153"/>
+    <colors red="135" green="206" blue="250"/>
+    <colors red="127" green="255"/>
+    <colors red="96" green="255" blue="96"/>
+    <colors red="255" green="255" blue="150"/>
+    <colors red="255" green="153" blue="51"/>
+    <colors red="221" green="160" blue="221"/>
+    <colors blue="255"/>
+    <colors red="152" green="251" blue="152"/>
+    <colors red="255" green="204" blue="150"/>
+    <fonts name="Arial" size="8"/>
+    <fonts name="Arial" size="12" bold="true"/>
+    <fonts name="Arial" size="12"/>
+  </pi:Diagram>
+  <gama:EWorldAgent name="world" experimentLinks="/7" actionLinks="/3 /5" microSpeciesLinks="/13 /25 /33 /39 /45 /51 /57 /65" init="ask cell  {&#xD;&#xA;&#x9;subsidence &lt;- subsidence + grid_value;&#xD;&#xA;&#x9;color &lt;- hsb(210 / 360,((subsidence / 10) > 1) ? 1 : (((subsidence / 10) &lt; 0) ? 0 : (subsidence / 10)),0.2);&#xD;&#xA;}&#xD;&#xA;create water  {&#xD;&#xA;&#x9;location &lt;- point(world.shape.width / 2,world.shape.height / 2,wlevel);&#xD;&#xA;}&#xD;&#xA;create traffic_light from: node_shp  {&#xD;&#xA;&#x9;color_fire &lt;- flip(0.5) ? #red : #green;&#xD;&#xA;&#x9;nbred &lt;- 30 + rnd(70);&#xD;&#xA;&#x9;nbgreen &lt;- 15 + rnd(40);&#xD;&#xA;}&#xD;&#xA;ask int(length(traffic_light) * 0.9) among traffic_light  {&#xD;&#xA;&#x9;do die ;&#xD;&#xA;}&#xD;&#xA;create road from: road_shp ;active_cells &lt;- pollutant_grid where !empty(road overlapping each);ask active_cells  {&#xD;&#xA;&#x9;active &lt;- true;&#xD;&#xA;}&#xD;&#xA;road_weights &lt;- road as_map (each :: each.shape.perimeter);road_geom &lt;- union(road accumulate each.shape);road_graph &lt;- as_edge_graph(list&lt;road>(road));create building from: building_shp  {&#xD;&#xA;&#x9;depth &lt;- 10 + ((rnd(20) / 150) * shape.perimeter);&#xD;&#xA;&#x9;texture &lt;- textures[rnd(9)];&#xD;&#xA;}&#xD;&#xA;create vehicle number: nbvehicle  {&#xD;&#xA;&#x9;type &lt;- TYPE_MOTORBIKE;&#xD;&#xA;&#x9;location &lt;- any_location_in(road_geom);&#xD;&#xA;}&#xD;&#xA;">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>210</colorPicto>
+    <variables init="file&lt;int, geometry>('../includes/NKdemsimple.tif')" type="grid_file" name="grid_data"/>
+    <variables init="file&lt;int, geometry>('../includes/nkRoadsSimple.shp')" type="shape_file" name="road_shp"/>
+    <variables init="file&lt;int, geometry>('../includes/nkNodesSimple.shp')" type="shape_file" name="node_shp"/>
+    <variables init="file&lt;int, geometry>('../includes/nkBuildingSimple.shp')" type="shape_file" name="building_shp"/>
+    <variables init="envelope(building_shp)" type="geometry" name="shape"/>
+    <variables init="file&lt;point, int>('../images/building_texture/roof_top.png')" type="image_file" name="roof_texture"/>
+    <variables init="[file&lt;point, int>('../images/building_texture/texture1.jpg'),file&lt;point, int>('../images/building_texture/texture2.jpg'),file&lt;point, int>('../images/building_texture/texture3.jpg'),file&lt;point, int>('../images/building_texture/texture4.jpg'),file&lt;point, int>('../images/building_texture/texture5.jpg'),file&lt;point, int>('../images/building_texture/texture6.jpg'),file&lt;point, int>('../images/building_texture/texture7.jpg'),file&lt;point, int>('../images/building_texture/texture8.jpg'),file&lt;point, int>('../images/building_texture/texture9.jpg'),file&lt;point, int>('../images/building_texture/texture10.jpg')]" type="list&lt;image_file>" name="textures"/>
+    <variables type="graph" name="road_graph"/>
+    <variables init="false" type="bool" name="draw_perception"/>
+    <variables init="true" type="bool" name="show_building_names"/>
+    <variables type="float" name="max_value"/>
+    <variables type="float" name="min_value"/>
+    <variables init="false" type="bool" name="recompute_path"/>
+    <variables type="geometry" name="road_geom"/>
+    <variables init="300" type="int" name="nbvehicle"/>
+    <variables type="map&lt;road, float>" name="road_weights"/>
+    <variables type="list&lt;moveable>" name="moved_agents"/>
+    <variables type="point" name="mouse_target"/>
+    <variables init="circle(float(5))" type="geometry" name="zone"/>
+    <variables type="bool" name="can_drop"/>
+    <variables init="false" type="bool" name="edit_mode"/>
+    <variables init="'motorbyke'" type="string" name="TYPE_MOTORBIKE"/>
+    <variables init="'car'" type="string" name="TYPE_CAR"/>
+    <variables init="'truck'" type="string" name="TYPE_TRUCK"/>
+    <variables init="1.0" type="float" name="MOTORBIKE_COEF"/>
+    <variables init="2.0" type="float" name="CAR_COEF"/>
+    <variables init="2.0" type="float" name="TRUCK_COEF"/>
+    <variables init="map&lt;string, float>([TYPE_MOTORBIKE :: MOTORBIKE_COEF,TYPE_CAR :: CAR_COEF,TYPE_TRUCK :: TRUCK_COEF])" type="map&lt;string, float>" name="coeff_vehicle"/>
+    <variables init="1.0" type="float" name="coeff_building"/>
+    <variables type="list&lt;pollutant_grid>" name="active_cells"/>
+    <variables init="0.5" type="float" name="decrease_coeff"/>
+    <variables init=" ['essence':: [10::98.19,20::69.17,30::56.32,40::49.3,50::45.29] ,'diesel':: [10::201.74,20::152,30::127.82,40::114.29,50::106.48] ] " type="map&lt;string, map&lt;int, float>>" name="pollution_rate"/>
+    <variables init="font('Arial',14,#bold)" type="font" name="regular"/>
+  </gama:EWorldAgent>
+  <gama:EAction name="click" gamlCode="mouse_target &lt;- #user_location;&#xD;&#xA;if !edit_mode  {&#xD;&#xA;&#x9;return ;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if empty(moved_agents)  {&#xD;&#xA;&#x9;list&lt;moveable> selected_agents &lt;- list&lt;moveable>((self.get_all_instances(spec:moveable)) overlapping at_location(zone,#user_location));&#xD;&#xA;&#x9;moved_agents &lt;- selected_agents;&#xD;&#xA;&#x9;ask selected_agents  {&#xD;&#xA;&#x9;&#x9;difference &lt;- #user_location - location;&#xD;&#xA;&#x9;&#x9;color &lt;- #olive;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;}else  {&#xD;&#xA;&#x9;if can_drop  {&#xD;&#xA;&#x9;&#x9;ask moved_agents  {&#xD;&#xA;&#x9;&#x9;&#x9;color &lt;- #burlywood;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#x9;moved_agents &lt;- list&lt;moveable>([]);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" actionLinks="/3">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>153</colorPicto>
+  </gama:EAction>
+  <gama:EActionLink target="/2" source="/1" action="/2" species="/1"/>
+  <gama:EAction name="get_all_instances" gamlCode="arg spec type: species ;&#xD;&#xA;return spec.population + (spec.subspecies accumulate (self.get_all_instances(spec:each))) ;&#xD;&#xA;" actionLinks="/5">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>153</colorPicto>
+  </gama:EAction>
+  <gama:EActionLink target="/4" source="/1" action="/4" species="/1"/>
+  <gama:EGUIExperiment name="show_example" experimentLink="/7" displayLinks="/9 /11">
+    <colorPicto>135</colorPicto>
+    <colorPicto>206</colorPicto>
+    <colorPicto>250</colorPicto>
+  </gama:EGUIExperiment>
+  <gama:EExperimentLink target="/6" source="/1" species="/1" experiment="/6"/>
+  <gama:EDisplay name="subsidence" displayLink="/9" gamlCode="&#xD;&#xA;&#x9;overlay transparency: 0.1 position: point(4,3) background: #black size: point(180 * #pixels,20 * #pixels) border: #black rounded: true  {&#xD;&#xA;&#x9;&#x9;if edit_mode  {&#xD;&#xA;&#x9;&#x9;&#x9;draw 'Editing' color: #white at: point(20 * #pixels,10 * #pixels) border: #black ;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;species traffic_light ;&#xD;&#xA;&#x9;species road refresh: false ;&#xD;&#xA;&#x9;species building ;&#xD;&#xA;&#x9;species vehicle ;&#xD;&#xA;&#x9;grid cell elevation: subsidence transparency: 0.0 position: point(0,0,-0.004) triangulation: true ;&#xD;&#xA;&#x9;species water transparency: 0.9 ;&#xD;&#xA;&#x9;event mouse_move action: move ;&#xD;&#xA;&#x9;event mouse_up action: click ;&#xD;&#xA;" defineGamlCode="true">
+    <colorPicto>127</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>0</colorPicto>
+    <facets name="background" owner="/8" value="#black"/>
+    <facets name="type" owner="/8" value="opengl"/>
+    <facets name="name" owner="/8" value="subsidence"/>
+  </gama:EDisplay>
+  <gama:EDisplayLink target="/8" source="/6" experiment="/6" display="/8"/>
+  <gama:EDisplay name="polution" displayLink="/11" gamlCode="&#xD;&#xA;&#x9;overlay transparency: 0.1 position: point(4,3) background: #black size: point(180 * #pixels,20 * #pixels) border: #black rounded: true  {&#xD;&#xA;&#x9;&#x9;if edit_mode  {&#xD;&#xA;&#x9;&#x9;&#x9;draw 'Editing' color: #white at: point(20 * #pixels,10 * #pixels) border: #black ;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;species traffic_light ;&#xD;&#xA;&#x9;species road refresh: false ;&#xD;&#xA;&#x9;species building ;&#xD;&#xA;&#x9;species vehicle ;&#xD;&#xA;&#x9;grid pollutant_grid elevation: ((pollution / 10) &lt; 0) ? 0.0 : (pollution / 10) transparency: 0.4 triangulation: true ;&#xD;&#xA;&#x9;event mouse_move action: move ;&#xD;&#xA;&#x9;event mouse_up action: click ;&#xD;&#xA;" defineGamlCode="true">
+    <colorPicto>127</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>0</colorPicto>
+    <facets name="background" owner="/10" value="#black"/>
+    <facets name="type" owner="/10" value="opengl"/>
+    <facets name="name" owner="/10" value="polution"/>
+  </gama:EDisplay>
+  <gama:EDisplayLink target="/10" source="/6" experiment="/6" display="/10"/>
+  <gama:ESpecies name="vehicle" aspectLinks="/23" actionLinks="/15 /17" reflexLinks="/19 /21" macroSpeciesLinks="/13">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="skills" owner="/12" value="[moving]"/>
+    <facets name="parent" owner="/12" value="moveable"/>
+    <facets name="name" owner="/12" value="vehicle"/>
+    <variables init="point(0,0)" type="point" name="difference"/>
+    <variables init="nil" type="geometry" name="current_edge"/>
+    <variables init="0.0" type="float" name="real_speed"/>
+    <variables init="((insane ? (70 + rnd(50)) : (10 + rnd(60.0))) * #km) / #h" type="float" name="speed"/>
+    <variables type="point" name="destination"/>
+    <variables init="rnd(360.0)" type="float" name="heading"/>
+    <variables init="nil" type="path" name="current_path"/>
+    <variables type="string" name="type"/>
+    <variables type="int" name="nb_people"/>
+    <variables init="'essence'" type="string" name="carburant"/>
+    <variables init="5.0 + rnd(4)" type="float" name="wsize"/>
+    <variables init="2.0 + rnd(4)" type="float" name="hsize"/>
+    <variables init="flip(0.0001) ? true : false" type="bool" name="insane"/>
+    <variables init="speed" type="float" name="csp"/>
+    <variables init="wsize * 4" type="float" name="perception_distance"/>
+    <variables init="rectangle(wsize,hsize)" type="geometry" name="shape"/>
+    <variables type="geometry" name="TL_area"/>
+    <variables init="nil" type="point" name="target"/>
+    <variables init="#green" type="rgb" name="csd"/>
+    <variables init="false" type="bool" name="waiting_traffic_light"/>
+    <skills>moving</skills>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/12" source="/1" macro="/1" micro="/12"/>
+  <gama:EAction name="pollution_from_speed" gamlCode="float returnedValue &lt;- -1.0;&#xD;&#xA;loop spee over: pollution_rate[carburant].keys  {&#xD;&#xA;&#x9;if real_speed &lt; spee  {&#xD;&#xA;&#x9;&#x9;returnedValue &lt;- pollution_rate[carburant][spee];&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return (returnedValue != -1.0) ? returnedValue : pollution_rate[carburant][last(pollution_rate[carburant].keys)] ;&#xD;&#xA;" actionLinks="/15">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>153</colorPicto>
+  </gama:EAction>
+  <gama:EActionLink target="/14" source="/12" action="/14" species="/12"/>
+  <gama:EAction name="get_pollution" gamlCode="return (self.pollution_from_speed()) * coeff_vehicle[type] ;&#xD;&#xA;" actionLinks="/17">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>153</colorPicto>
+  </gama:EAction>
+  <gama:EActionLink target="/16" source="/12" action="/16" species="/12"/>
+  <gama:EReflex name="move" gamlCode="&#xD;&#xA;&#x9;TL_area &lt;- intersection(intersection(cone(int(heading - 15),int(heading + 15)),world.shape),circle(perception_distance));&#xD;&#xA;&#x9;list&lt;traffic_light> redlight &lt;- ((traffic_light at_distance perception_distance) where (each.color_fire = #red)) overlapping TL_area;&#xD;&#xA;&#x9;list&lt;vehicle> v &lt;- (vehicle at_distance perception_distance) where (!overlaps(each.TL_area,TL_area) and overlaps(each,TL_area));&#xD;&#xA;&#x9;if length(redlight) > 0  {&#xD;&#xA;&#x9;&#x9;waiting_traffic_light &lt;- true;&#xD;&#xA;&#x9;&#x9;return ;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;if !waiting_traffic_light and (length(v where each.waiting_traffic_light) > 0)  {&#xD;&#xA;&#x9;&#x9;waiting_traffic_light &lt;- true;&#xD;&#xA;&#x9;&#x9;return ;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;waiting_traffic_light &lt;- false;&#xD;&#xA;&#x9;if length(v) > 0  {&#xD;&#xA;&#x9;&#x9;csd &lt;- #darkgreen;&#xD;&#xA;&#x9;&#x9;if csp = speed  {&#xD;&#xA;&#x9;&#x9;&#x9;csp &lt;- v min_of each.csp;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;}else  {&#xD;&#xA;&#x9;&#x9;csd &lt;- #green;&#xD;&#xA;&#x9;&#x9;csp &lt;- speed;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;do goto (move_weights:road_weights, on:road_graph, recompute_path:recompute_path, speed:csp, target:target);&#xD;&#xA;&#x9;if (target != nil) and (distance_to(location,target) &lt;= speed)  {&#xD;&#xA;&#x9;&#x9;target &lt;- nil;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;" reflexLinks="/19">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+    <facets name="when" owner="/18" value="target != nil"/>
+  </gama:EReflex>
+  <gama:EReflexLink target="/18" source="/12" reflex="/18" species="/12"/>
+  <gama:EReflex name="choose_target" gamlCode="&#xD;&#xA;&#x9;target &lt;- any_location_in(road_geom);&#xD;&#xA;" reflexLinks="/21">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+    <facets name="when" owner="/20" value="target = nil"/>
+  </gama:EReflex>
+  <gama:EReflexLink target="/20" source="/12" reflex="/20" species="/12"/>
+  <gama:EAspect name="default" gamlCode="&#xD;&#xA;&#x9;draw shape color: csd rotate: heading border: #black depth: 1 ;&#xD;&#xA;&#x9;if draw_perception and (TL_area != nil)  {&#xD;&#xA;&#x9;&#x9;draw TL_area color: csd empty: true depth: 0.5 ;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;" aspectLinks="/23" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/22" value="default"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/22" source="/12" aspect="/22" species="/12"/>
+  <gama:EGrid name="pollutant_grid" reflexLinks="/27 /29 /31" macroSpeciesLinks="/25">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="width" owner="/24" value="50"/>
+    <facets name="name" owner="/24" value="pollutant_grid"/>
+    <facets name="neighbors" owner="/24" value="8"/>
+    <facets name="height" owner="/24" value="50"/>
+    <variables type="list&lt;float>" name="bands"/>
+    <variables type="int" name="grid_y"/>
+    <variables type="float" name="grid_value"/>
+    <variables init="#black" type="rgb" name="color"/>
+    <variables type="list&lt;pollutant_grid>" name="neighbors"/>
+    <variables type="int" name="grid_x"/>
+    <variables init="false" type="bool" name="active"/>
+    <variables type="float" name="pollution"/>
+  </gama:EGrid>
+  <gama:ESubSpeciesLink target="/24" source="/1" macro="/1" micro="/24"/>
+  <gama:EReflex name="pollution_increase" gamlCode="&#xD;&#xA;&#x9;list&lt;vehicle> people_on_cell &lt;- vehicle overlapping self;&#xD;&#xA;&#x9;pollution &lt;- pollution + sum(people_on_cell accumulate (each.get_pollution()));&#xD;&#xA;" reflexLinks="/27">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+    <facets name="when" owner="/26" value="active"/>
+  </gama:EReflex>
+  <gama:EReflexLink target="/26" source="/24" reflex="/26" species="/24"/>
+  <gama:EReflex name="diffusion" gamlCode="&#xD;&#xA;&#x9;ask neighbors  {&#xD;&#xA;&#x9;&#x9;pollution &lt;- pollution + (0.05 * myself.pollution);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;pollution &lt;- pollution * (1 - (8 * 0.05));&#xD;&#xA;" reflexLinks="/29">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/28" source="/24" reflex="/28" species="/24"/>
+  <gama:EReflex name="update" gamlCode="&#xD;&#xA;&#x9;pollution &lt;- pollution * decrease_coeff;&#xD;&#xA;&#x9;color &lt;- rgb(int((255 * pollution) / 1000),0,0);&#xD;&#xA;" reflexLinks="/31">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/30" source="/24" reflex="/30" species="/24"/>
+  <gama:ESpecies name="road" aspectLinks="/35 /37" macroSpeciesLinks="/33">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="name" owner="/32" value="road"/>
+    <variables init="1" type="int" name="nbLanes"/>
+    <variables init="1.0" update="1 + (((float(length(vehicle at_distance 10.0)) / shape.perimeter) * 20) / nbLanes)" type="float" name="coeff_traffic"/>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/32" source="/1" macro="/1" micro="/32"/>
+  <gama:EAspect name="traffic_jam" gamlCode="&#xD;&#xA;&#x9;if coeff_traffic > 0.25  {&#xD;&#xA;&#x9;&#x9;draw shape + (coeff_traffic / 20.0) color: #red ;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;" aspectLinks="/35" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/34" value="traffic_jam"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/34" source="/32" aspect="/34" species="/32"/>
+  <gama:EAspect name="default" gamlCode="&#xD;&#xA;&#x9;draw shape + float(5) color: #darkgray empty: false ;&#xD;&#xA;" aspectLinks="/37" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/36" value="default"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/36" source="/32" aspect="/36" species="/32"/>
+  <gama:ESpecies name="traffic_light" aspectLinks="/43" reflexLinks="/41" macroSpeciesLinks="/39">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="parent" owner="/38" value="moveable"/>
+    <facets name="name" owner="/38" value="traffic_light"/>
+    <variables init="point(0,0)" type="point" name="difference"/>
+    <variables init="square(float(1))" type="geometry" name="shape"/>
+    <variables type="int" name="nbred"/>
+    <variables type="int" name="nbgreen"/>
+    <variables type="rgb" name="color_fire"/>
+    <variables init="0" type="int" name="counter"/>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/38" source="/1" macro="/1" micro="/38"/>
+  <gama:EReflex name="change" gamlCode="&#xD;&#xA;&#x9;if (color_fire = #red) and (counter > nbred)  {&#xD;&#xA;&#x9;&#x9;counter &lt;- 0;&#xD;&#xA;&#x9;&#x9;color_fire &lt;- #green;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;if (color_fire = #green) and (counter > nbgreen)  {&#xD;&#xA;&#x9;&#x9;counter &lt;- 0;&#xD;&#xA;&#x9;&#x9;color_fire &lt;- #red;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;counter &lt;- counter + 1;&#xD;&#xA;" reflexLinks="/41">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/40" source="/38" reflex="/40" species="/38"/>
+  <gama:EAspect name="default" gamlCode="&#xD;&#xA;&#x9;draw box(float(1),float(1),float(12)) color: #black ;&#xD;&#xA;&#x9;draw sphere(float(5)) color: color_fire at: point(location.x,location.y,12) ;&#xD;&#xA;" aspectLinks="/43" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/42" value="default"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/42" source="/38" aspect="/42" species="/38"/>
+  <gama:ESpecies name="water" aspectLinks="/49" reflexLinks="/47" macroSpeciesLinks="/45">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="name" owner="/44" value="water"/>
+    <variables init="-11.0" type="float" name="wlevel"/>
+    <variables init="1" type="int" name="incr"/>
+    <variables init="box(world.shape.width,world.shape.height,float(1))" type="geometry" name="shape"/>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/44" source="/1" macro="/1" micro="/44"/>
+  <gama:EReflex name="innon" gamlCode="&#xD;&#xA;&#x9;wlevel &lt;- wlevel + (incr * 0.05);&#xD;&#xA;&#x9;if wlevel > -4  {&#xD;&#xA;&#x9;&#x9;incr &lt;- -1;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;if wlevel &lt; -11.0  {&#xD;&#xA;&#x9;&#x9;incr &lt;- 1;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;location &lt;- point(world.shape.width / 2,world.shape.height / 2,wlevel);&#xD;&#xA;" reflexLinks="/47">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/46" source="/44" reflex="/46" species="/44"/>
+  <gama:EAspect name="default" gamlCode="&#xD;&#xA;&#x9;draw shape color: #darkblue at: location ;&#xD;&#xA;" aspectLinks="/49" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/48" value="default"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/48" source="/44" aspect="/48" species="/44"/>
+  <gama:ESpecies name="building" aspectLinks="/55" actionLinks="/53" macroSpeciesLinks="/51">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="parent" owner="/50" value="moveable"/>
+    <facets name="name" owner="/50" value="building"/>
+    <variables init="point(0,0)" type="point" name="difference"/>
+    <variables type="float" name="depth"/>
+    <variables type="string" name="osm_name"/>
+    <variables type="file" name="texture"/>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/50" source="/1" macro="/1" micro="/50"/>
+  <gama:EAction name="get_weight" gamlCode="return (shape.area / 10000) * coeff_building ;&#xD;&#xA;&#xD;&#xA;" actionLinks="/53" returnType="">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>153</colorPicto>
+  </gama:EAction>
+  <gama:EActionLink target="/52" source="/50" action="/52" species="/50"/>
+  <gama:EAspect name="default" gamlCode="&#xD;&#xA;&#x9;draw shape color: #gray depth: depth ;&#xD;&#xA;&#x9;if ((#zoom > 8) and show_building_names) and ((osm_name index_of 'osm_agent') != float(0))  {&#xD;&#xA;&#x9;&#x9;draw osm_name color: #yellow perspective: false at: point(location.x,location.y,depth + 1) font: regular anchor: #center ;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;" aspectLinks="/55" defineGamlCode="true">
+    <colorPicto>152</colorPicto>
+    <colorPicto>251</colorPicto>
+    <colorPicto>152</colorPicto>
+    <facets name="name" owner="/54" value="default"/>
+  </gama:EAspect>
+  <gama:EAspectLink target="/54" source="/50" aspect="/54" species="/50"/>
+  <gama:EGrid name="cell" reflexLinks="/59 /61 /63" macroSpeciesLinks="/57">
+    <colorPicto>255</colorPicto>
+    <colorPicto>204</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="name" owner="/56" value="cell"/>
+    <facets name="neighbors" owner="/56" value="8"/>
+    <facets name="file" owner="/56" value="grid_data"/>
+    <variables type="list&lt;float>" name="bands"/>
+    <variables type="int" name="grid_y"/>
+    <variables type="float" name="grid_value"/>
+    <variables init="#black" type="rgb" name="color"/>
+    <variables type="list&lt;cell>" name="neighbors"/>
+    <variables type="int" name="grid_x"/>
+    <variables init="true" type="bool" name="active"/>
+    <variables init="1.0" type="float" name="subsidence"/>
+  </gama:EGrid>
+  <gama:ESubSpeciesLink target="/56" source="/1" macro="/1" micro="/56"/>
+  <gama:EReflex name="pollution_increase" gamlCode="&#xD;&#xA;&#x9;list&lt;building> building_on_cell &lt;- building overlapping self;&#xD;&#xA;&#x9;subsidence &lt;- (subsidence &lt; 0) ? 0 : (subsidence - (sum(building_on_cell accumulate (each.get_weight())) * 0.1));&#xD;&#xA;" reflexLinks="/59">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+    <facets name="when" owner="/58" value="active"/>
+  </gama:EReflex>
+  <gama:EReflexLink target="/58" source="/56" reflex="/58" species="/56"/>
+  <gama:EReflex name="diffusion" gamlCode="&#xD;&#xA;&#x9;ask neighbors  {&#xD;&#xA;&#x9;&#x9;subsidence &lt;- (subsidence &lt; 0) ? 0 : (subsidence - (0.0005 * myself.subsidence));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;" reflexLinks="/61">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/60" source="/56" reflex="/60" species="/56"/>
+  <gama:EReflex name="update" gamlCode="&#xD;&#xA;&#x9;color &lt;- hsb(210 / 360,((subsidence / 10) > 1) ? 1 : (((subsidence / 10) &lt; 0) ? 0 : (subsidence / 10)),0.2);&#xD;&#xA;" reflexLinks="/63">
+    <colorPicto>221</colorPicto>
+    <colorPicto>160</colorPicto>
+    <colorPicto>221</colorPicto>
+  </gama:EReflex>
+  <gama:EReflexLink target="/62" source="/56" reflex="/62" species="/56"/>
+  <gama:ESpecies name="moveable" macroSpeciesLinks="/65">
+    <colorPicto>255</colorPicto>
+    <colorPicto>255</colorPicto>
+    <colorPicto>150</colorPicto>
+    <facets name="name" owner="/64" value="moveable"/>
+    <variables init="point(0,0)" type="point" name="difference"/>
+  </gama:ESpecies>
+  <gama:ESubSpeciesLink target="/64" source="/1" macro="/1" micro="/64"/>
+</xmi:XMI>
