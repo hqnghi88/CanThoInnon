@@ -1,28 +1,20 @@
-/***
-* Name: GlobalVariable
-* Author: hqngh
-* Description: 
-* Tags: Tag1, Tag2, TagN
-***/
-
 model GlobalVariable
+
 import "Moveable.gaml"
 import "Road.gaml"
 import "PollutantGrid.gaml"
-global{
+
+global {
 	file grid_data <- file('../includes/NKdemsimple.tif');
 	file road_shp <- file("../includes/nkRoadsSimple.shp");
 	file node_shp <- file("../includes/nkNodesSimple.shp");
-	//		file road_shp <- file("../includes/ninhkieu.shp");
-	//		file node_shp <- file("../includes/nodes.shp");
 	file building_shp <- file("../includes/nkBuildingSimple.shp");
-	//computation of the environment size from the geotiff file
 	geometry shape <- envelope(building_shp);
 	file roof_texture <- file('../images/building_texture/roof_top.png');
 	list
 	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
 	graph road_graph;
-	bool draw_perception <- false; 
+	bool draw_perception <- false;
 	float max_value;
 	float min_value;
 	bool recompute_path <- false;
@@ -37,8 +29,6 @@ global{
 	string TYPE_MOTORBIKE <- "motorbyke";
 	string TYPE_CAR <- "car";
 	string TYPE_TRUCK <- "truck";
-
-	// COEFF Vehicule
 	float MOTORBIKE_COEF <- 1.0;
 	float CAR_COEF <- 2.0;
 	float TRUCK_COEF <- 2.0;
@@ -46,9 +36,10 @@ global{
 	float coeff_building <- 1.0;
 	list<pollutant_grid> active_cells;
 	float decrease_coeff <- 0.5;
-	// Pollution en CO2
 	map<string, map<int, float>>
 	pollution_rate <- ["essence"::[10::98.19, 20::69.17, 30::56.32, 40::49.3, 50::45.29], "diesel"::[10::201.74, 20::152, 30::127.82, 40::114.29, 50::106.48]];
 	font regular <- font("Arial", 14, #bold);
-	
 }
+
+
+

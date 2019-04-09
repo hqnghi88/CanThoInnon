@@ -1,4 +1,4 @@
-model TrafficLightl
+model TrafficLight
 import "Moveable.gaml"
 species traffic_light parent: moveable {
 	geometry shape <- square(1);
@@ -27,3 +27,4 @@ species traffic_light parent: moveable {
 	}
 
 }
+

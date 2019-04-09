@@ -12,7 +12,6 @@ species vehicle skills: [moving] parent: moveable {
 	bool insane <- flip(0.0001) ? true : false;
 	float speed <- (insane ? 70 + rnd(50) : 10 + rnd(60.0)) °km / °h;
 	float csp <- speed;
-	//	float ccsp <- csp;
 	float perception_distance <- wsize * 4;
 	geometry shape <- rectangle(wsize, hsize);
 	geometry TL_area;
