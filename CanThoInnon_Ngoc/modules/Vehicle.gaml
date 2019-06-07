@@ -9,6 +9,7 @@ species vehicle skills: [moving] parent: moveable {
 	rgb color;
 	string type;
 	int nb_people;
+	bool go_work<-true;
 	string carburant <- "essence";
 	float wsize <- 7.0 + rnd(1);
 	float hsize <- 2.0 + rnd(2);
@@ -22,6 +23,7 @@ species vehicle skills: [moving] parent: moveable {
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
+	int time_on_road<-0;
 	float get_pollution {
 	//		write  csp * coeff_vehicle[type];
 		return csp * coeff_vehicle[type] * 100;
@@ -53,10 +55,10 @@ species vehicle skills: [moving] parent: moveable {
 			csp <- speed;
 		}
 
-		if ((first(water).wlevel > -14.00) and length(DEMcell overlapping self) > 0) {
+		if ((first(water).wlevel > -13.30) and length(DEMcell overlapping self) > 0) {
 			if ((first(DEMcell overlapping self).subsidence < 30)) {
 				csd <- #black;
-				csp <- csp - (5 °m / °h);
+				csp <-(rnd(5) °m / °h);
 			} else {
 				csd <- #green;
 				csp <- speed;
@@ -64,16 +66,26 @@ species vehicle skills: [moving] parent: moveable {
 
 		}
 
+		time_on_road<-time_on_road+1;
 		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
 		if (target != nil and location distance_to target <= speed) {
 		//		if (target = location){
 			target <- nil;
+			time_on_road<-0;
 		}
 
 	}
 
 	reflex choose_target when: target = nil {
-		target <- any_location_in(road_geom);
+//		target <- any_location_in(road_geom);
+		if(go_work){			
+			go_work<-false;
+			target <- any_location_in(road_geom);
+		}else{
+			go_work<-true;
+			target <- any_location_in(any(building where(each.osm_name index_of "osm_agent" != 0)));
+			
+		}
 	}
 
 	aspect d3d {

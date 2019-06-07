@@ -93,9 +93,22 @@ experiment show_example type: gui {
 			species vehicle; //position: {0, 0, 0.002};
 			grid DEMcell elevation: subsidence / 10 position: {0, 0, -0.0085} transparency: 0.0 triangulation: true;
 			species water transparency: 0.9;
-			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.9 triangulation: true;
+			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.7 triangulation: true;
 		}
 
+		display "Statistic" {
+			chart "Number of critical pollution" type: series {
+				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
+			}
+
+		}
+
+		display "Statistic2" {
+			chart "Average time on road" type: series {
+				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
+			}
+
+		}
 		//						display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
 		//						{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 5.0}
 		//						camera_up_vector: {0.0, 0.0, -1.0} {
