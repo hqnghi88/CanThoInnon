@@ -1,4 +1,5 @@
 model CanThoInno
+
 import "../modules/GlobalVariable.gaml"
 import "../modules/Moveable.gaml"
 import "../modules/TrafficLight.gaml"
@@ -9,31 +10,35 @@ import "../modules/Water.gaml"
 import "../modules/PollutantGrid.gaml"
 import "../modules/DEMCell.gaml"
 import "../modules/Actions.gaml"
+
 global {
 //definiton of the file to import
-	float step<-1#hour;
+	float step <- 1 #hour;
+
 	init {
 		ask DEMcell {
 			subsidence <- subsidence + grid_value;
-			color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
+		}
+
+		ask DEMcell {
+			color <- hsb(0 / 360, 0, 1 - ((subsidence + maxsub) / (maxsub * 4)));
+			//			color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
 		}
 
 		create water {
 			location <- {world.shape.width / 2, world.shape.height / 2, wlevel};
 		}
-		
-//		write node_shp as list;
 
+		//		write node_shp as list;
 		create traffic_light from: node_shp {
 			color_fire <- flip(0.5) ? #red : #green;
 			nbred <- 30 + rnd(70);
-			nbgreen <- 15 + rnd(40); 
+			nbgreen <- 15 + rnd(40);
 		}
-// 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
-
+		// 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
 		create road from: road_shp {
 		}
-//	save road to:"../includes/nkRoadsSimple2.shp" type:"shp";
+		//	save road to:"../includes/nkRoadsSimple2.shp" type:"shp";
 		active_cells <- pollutant_grid where (!empty(road overlapping each));
 		ask active_cells {
 			active <- true;
@@ -53,50 +58,43 @@ global {
 		}
 
 	}
+
 }
 
-experiment show_example type: gui {  
+experiment show_example type: gui {
+
+	init {
+		gama.pref_display_show_referential <- false;
+		gama.pref_display_show_rotation <- false;
+	}
+
 	output {
-		layout #split navigator:false editors:false consoles:false;
-		display subsidence type: opengl {
+		layout #stack navigator: false editors: false consoles: true;
+		display "Edit Map" type: opengl {
 			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
 				if (edit_mode) {
-					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
+					draw "Editing" at: {20 #px, 15 #px} color: #black border: #white;
 				}
 
 			}
 
-
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building;
-			species vehicle; //position: {0, 0, 0.002};
-			grid DEMcell elevation: subsidence/10 position: {0, 0, -0.004} transparency: 0.0 triangulation: true;
-			species water transparency: 0.9;
-			//			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
+			species vehicle; //position: {0, 0, 0.002}; 
 			event mouse_move action: move;
 			event mouse_up action: click;
 		}
 
-//		display polution type:opengl{
-//			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
-//				if (edit_mode) {
-//					draw "Editing" at: {20 #px, 10 #px} color: #white border: #black;
-//				}
-//
-//			}
-//
-//			species traffic_light;
-//			species road refresh: false; // position: {0, 0, 0.002};
-//			species building;
-//			species vehicle; //position: {0, 0, 0.002};
-//			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
-//			event mouse_move action: move;
-//			event mouse_up action: click;
-//		}
-
-
-
+		display "Simulation result" type: opengl {
+			species traffic_light;
+			species road refresh: false; // position: {0, 0, 0.002};
+			species building;
+			species vehicle; //position: {0, 0, 0.002};
+			grid DEMcell elevation: subsidence / 10 position: {0, 0, -0.0085} transparency: 0.0 triangulation: true;
+			species water transparency: 0.9;
+			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.9 triangulation: true;
+		}
 
 		//						display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
 		//						{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 5.0}

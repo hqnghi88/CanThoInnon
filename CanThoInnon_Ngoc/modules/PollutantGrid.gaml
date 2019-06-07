@@ -21,7 +21,7 @@ grid pollutant_grid height: 50 width: 50 neighbors: 8 /*schedules: active_cells*
 
 	reflex update {
 		pollution <- pollution * decrease_coeff;
-		color <- rgb(255 * pollution / 1000, 0, 0);
+		color <- rgb(255 * pollution , 0, 0);
 	}
 
 }

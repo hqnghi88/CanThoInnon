@@ -1,5 +1,6 @@
 model TrafficLight
 import "Moveable.gaml"
+import "GlobalVariable.gaml"
 species traffic_light parent: moveable {
 	geometry shape <- square(1);
 	int nbred;
@@ -24,6 +25,9 @@ species traffic_light parent: moveable {
 	aspect default {
 		draw box(1, 1, 12) color: #black;
 		draw sphere(5) at: {location.x, location.y, 12} color: color_fire;
+		if (#zoom > 6) {
+			draw color_fire = #red ?""+(nbred-counter+1):""+(nbgreen-counter+1) anchor: #center font: font("Arial", 24, #bold)  color: color_fire at: {location.x, location.y, 25} perspective: false;
+		}
 	}
 
 }

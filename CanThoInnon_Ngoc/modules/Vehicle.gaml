@@ -7,32 +7,21 @@ species vehicle skills: [moving] parent: moveable {
 	string type;
 	int nb_people;
 	string carburant <- "essence";
-	float wsize <- 5.0 + rnd(4);
-	float hsize <- 2.0 + rnd(4);
-	bool insane <- flip(0.0001) ? true : false;
-	float speed <- (insane ? 70 + rnd(50) : 10 + rnd(60.0)) °km / °h;
+	float wsize <- 7.0 + rnd(1);
+	float hsize <- 2.0 + rnd(2);
+	float depth<-2.0+rnd(2);
+	bool insane <- flip(0.00001) ? true : false;
+	float speed <- (insane ? 20 + rnd(20) : 10+ rnd(10.0)) °m / °h;
 	float csp <- speed;
 	float perception_distance <- wsize * 4;
-	geometry shape <- rectangle(wsize, hsize);
+	geometry shape <- box(wsize, hsize,depth);
 	geometry TL_area;
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
-	float pollution_from_speed {
-		float returnedValue <- -1.0;
-		loop spee over: pollution_rate[carburant].keys {
-			if (real_speed < spee) {
-				returnedValue <- pollution_rate[carburant][spee];
-				break;
-			}
-
-		}
-
-		return (returnedValue != -1.0) ? returnedValue : pollution_rate[carburant][last(pollution_rate[carburant].keys)];
-	}
-
 	float get_pollution {
-		return pollution_from_speed() * coeff_vehicle[type];
+//		write  csp * coeff_vehicle[type];
+		return csp * coeff_vehicle[type]*100;
 	}
 
 	reflex move when: target != nil {
@@ -51,7 +40,7 @@ species vehicle skills: [moving] parent: moveable {
 
 		waiting_traffic_light <- false;
 		if (length(v) > 0) {
-			csd <- #darkgreen;
+			csd <- #darkred;
 			if (csp = speed) {
 				csp <- (v min_of each.csp);
 			}
@@ -77,7 +66,8 @@ species vehicle skills: [moving] parent: moveable {
 		
 	}
 	aspect default {
-		draw shape color: csd border: #black depth: 1 rotate: heading;
+		draw box(wsize-2,hsize,depth+2) color: csd  rotate: heading;
+		draw shape color: csd rotate: heading;
 		if (draw_perception and TL_area != nil) {
 			draw TL_area color: csd empty: true depth: 0.5;
 		}
