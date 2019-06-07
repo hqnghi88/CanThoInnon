@@ -57,6 +57,7 @@ global {
 
 experiment show_example type: gui {  
 	output {
+		layout #split navigator:false editors:false consoles:false;
 		display subsidence type: opengl {
 			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
 				if (edit_mode) {
@@ -70,7 +71,7 @@ experiment show_example type: gui {
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building;
 			species vehicle; //position: {0, 0, 0.002};
-			grid DEMcell elevation: subsidence position: {0, 0, -0.004} transparency: 0.0 triangulation: true;
+			grid DEMcell elevation: subsidence/10 position: {0, 0, -0.004} transparency: 0.0 triangulation: true;
 			species water transparency: 0.9;
 			//			grid pollutant_grid elevation: pollution / 10 < 0 ? 0.0 : pollution / 10 transparency: 0.4 triangulation: true;
 			event mouse_move action: move;

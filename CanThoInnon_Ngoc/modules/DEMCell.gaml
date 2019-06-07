@@ -18,7 +18,7 @@ grid DEMcell file: grid_data neighbors: 8 {
 	}
 
 	reflex update {
-		color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.20);
+		color <- hsb(210 / 360, subsidence / 10 > 1 ? 1 : (subsidence / 10 < 0 ? 0 : subsidence / 10), 0.40);
 	}
 
 }
