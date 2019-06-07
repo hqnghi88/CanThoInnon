@@ -6,10 +6,10 @@ import "PollutantGrid.gaml"
 
 global {
 	file grid_data <- file('../includes/nkdemsimple2.tif');
-	file road_shp <- file("../includes/nkRoadsSimple2.shp");
+	file road_shp <- file("../includes/nkRoadsSimple.shp");
 	file node_shp <- file("../includes/nkNodesSimple2.shp");
-	file building_shp <- file("../includes/nkBuildingSimple2.shp");
-	geometry shape <- envelope(road_shp);
+	file building_shp <- file("../includes/nkBuildingSimple.shp");
+	geometry shape <- envelope(building_shp);
 	file roof_texture <- file('../images/building_texture/roof_top.png');
 	list
 	textures <- [file('../images/building_texture/texture1.jpg'), file('../images/building_texture/texture2.jpg'), file('../images/building_texture/texture3.jpg'), file('../images/building_texture/texture4.jpg'), file('../images/building_texture/texture5.jpg'), file('../images/building_texture/texture6.jpg'), file('../images/building_texture/texture7.jpg'), file('../images/building_texture/texture8.jpg'), file('../images/building_texture/texture9.jpg'), file('../images/building_texture/texture10.jpg')];
@@ -19,7 +19,7 @@ global {
 	float min_value;
 	bool recompute_path <- false;
 	geometry road_geom;
-	int nbvehicle <- 50;
+	int nbvehicle <- 250;
 	map<road, float> road_weights;
 	list<moveable> moved_agents;
 	point mouse_target;

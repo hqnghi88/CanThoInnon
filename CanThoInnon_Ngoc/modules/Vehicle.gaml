@@ -1,7 +1,10 @@
 model Vehicle
+
 import "Moveable.gaml"
 import "TrafficLight.gaml"
 import "GlobalVariable.gaml"
+import "../modules/Water.gaml"
+import "../modules/DEMCell.gaml"
 species vehicle skills: [moving] parent: moveable {
 	rgb color;
 	string type;
@@ -9,19 +12,19 @@ species vehicle skills: [moving] parent: moveable {
 	string carburant <- "essence";
 	float wsize <- 7.0 + rnd(1);
 	float hsize <- 2.0 + rnd(2);
-	float depth<-2.0+rnd(2);
+	float depth <- 2.0 + rnd(2);
 	bool insane <- flip(0.00001) ? true : false;
-	float speed <- (insane ? 20 + rnd(20) : 10+ rnd(10.0)) °m / °h;
+	float speed <- (insane ? 20 + rnd(20) : 10 + rnd(10.0)) °m / °h;
 	float csp <- speed;
 	float perception_distance <- wsize * 4;
-	geometry shape <- box(wsize, hsize,depth);
+	geometry shape <- box(wsize, hsize, depth);
 	geometry TL_area;
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
 	float get_pollution {
-//		write  csp * coeff_vehicle[type];
-		return csp * coeff_vehicle[type]*100;
+	//		write  csp * coeff_vehicle[type];
+		return csp * coeff_vehicle[type] * 100;
 	}
 
 	reflex move when: target != nil {
@@ -50,6 +53,17 @@ species vehicle skills: [moving] parent: moveable {
 			csp <- speed;
 		}
 
+		if ((first(water).wlevel > -14.00) and length(DEMcell overlapping self) > 0) {
+			if ((first(DEMcell overlapping self).subsidence < 30)) {
+				csd <- #black;
+				csp <- csp - (5 °m / °h);
+			} else {
+				csd <- #green;
+				csp <- speed;
+			}
+
+		}
+
 		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
 		if (target != nil and location distance_to target <= speed) {
 		//		if (target = location){
@@ -61,12 +75,13 @@ species vehicle skills: [moving] parent: moveable {
 	reflex choose_target when: target = nil {
 		target <- any_location_in(road_geom);
 	}
-	aspect d3d{
-		draw obj_file("../motor/Bike.obj") size: 5 rotate: -90::{1,0,0} ;
-		
+
+	aspect d3d {
+		draw obj_file("../motor/Bike.obj") size: 5 rotate: -90::{1, 0, 0};
 	}
+
 	aspect default {
-		draw box(wsize-2,hsize,depth+2) color: csd  rotate: heading;
+		draw box(wsize - 2, hsize, depth + 2) color: csd rotate: heading;
 		draw shape color: csd rotate: heading;
 		if (draw_perception and TL_area != nil) {
 			draw TL_area color: csd empty: true depth: 0.5;
