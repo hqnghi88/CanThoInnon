@@ -38,7 +38,7 @@ global {
 //		 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
 		create road from: road_shp {
 		}
-		//	save road to:"../includes/nkRoadsSimple2.shp" type:"shp";
+//			save road to:"../includes/nkRoadsSimple3.shp" type:"shp";
 		active_cells <- pollutant_grid where (!empty(road overlapping each));
 		ask active_cells {
 			active <- true;
@@ -73,36 +73,27 @@ experiment show_example type: gui {
 
 	output {
 		layout #stack navigator: false editors: false consoles: false;
-//	display "Edit Map" type: opengl {
-//			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
-//				if (edit_mode) {
-//					draw "Editing" at: {20 #px, 15 #px} color: #black border: #white;
-//				}
-//
-//			}
-//
-//			species traffic_light;
-//			species road refresh: false; // position: {0, 0, 0.002};
-//			species building;
-//			species vehicle; //position: {0, 0, 0.002}; 
-//			event mouse_move action: move;
-//			event mouse_up action: click;
-//		}
+	display "Edit Map" type: opengl {
+			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
+				if (edit_mode) {
+					draw "Editing" at: {20 #px, 15 #px} color: #black border: #white;
+				}
 
-		display "Simulation result" type: opengl {
-//			graphics "terrain"{
-//				draw terrain  size:{world.shape.width+40,world.shape.height} at:{790,780,location.z};
-//			}10.034734,105.783050
+			}
 
 			species traffic_light;
 			species road refresh: false; // position: {0, 0, 0.002};
 			species building;
-			species vehicle; //position: {0, 0, 0.002};
-//			image static_map_request transparency: 0.3;
+			species vehicle; //position: {0, 0, 0.002}; 
+			event mouse_move action: move;
+			event mouse_up action: click;
+		}
 
-//			graphics "terrain"  transparency: 0.9 {static_map_request
-//				draw terrain  size:{world.shape.width+40,world.shape.height} at:{790,780,-0.0096};
-//			}
+		display "Simulation result" type: opengl {
+			species traffic_light;
+			species road refresh: false transparency: 0.5; // position: {0, 0, 0.002};
+			species building;
+			species vehicle; 
 			grid DEMcell texture:terrain elevation: subsidence / 10 position: {0, 0, -0.0085}  triangulation: true;
 			species water transparency: 0.29;
 			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.9 triangulation: true;

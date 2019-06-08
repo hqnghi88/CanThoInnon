@@ -6,7 +6,7 @@ import "PollutantGrid.gaml"
 
 global {
 	file grid_data <- file('../includes/nkdemsimple3.tif');
-	file road_shp <- file("../includes/nkRoadsSimple2.shp");
+	file road_shp <- file("../includes/nkRoadsSimple3.shp");
 	file node_shp <- file("../includes/nkNodesSimple2.shp");
 	file building_shp <- file("../includes/nkBuildingSimple2.shp");
 	geometry shape <- envelope(road_shp);
