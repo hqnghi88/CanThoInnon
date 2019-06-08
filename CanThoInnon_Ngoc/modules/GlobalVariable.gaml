@@ -5,7 +5,7 @@ import "Road.gaml"
 import "PollutantGrid.gaml"
 
 global {
-	file grid_data <- file('../includes/nkdemsimple2.tif');
+	file grid_data <- file('../includes/nkdemsimple3.tif');
 	file road_shp <- file("../includes/nkRoadsSimple2.shp");
 	file node_shp <- file("../includes/nkNodesSimple2.shp");
 	file building_shp <- file("../includes/nkBuildingSimple2.shp");
@@ -41,6 +41,7 @@ global {
 	font regular <- font("Arial", 20, #bold);
 	float maxsub <- 147.0;
 
+	image_file terrain <- image_file("../images/terrain.png");
 	//	geometry motor3d<-geometry(obj_file("../motor/Bike.obj"));
 }
 
