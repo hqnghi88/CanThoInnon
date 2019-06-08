@@ -74,19 +74,19 @@ experiment show_example type: gui autorun: true {
 
 	output {
 		layout #stack navigator: false editors: false consoles: false tray: false toolbars: false tabs: true;
-		display "Statistic" {
-			chart "Number of critical pollution" type: series {
-				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
-			}
-
-		}
-
-		display "Statistic2" {
-			chart "Average time on road" type: series {
-				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
-			}
-
-		}
+//		display "Statistic" {
+//			chart "Number of critical pollution" type: series {
+//				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
+//			}
+//
+//		}
+//
+//		display "Statistic2" {
+//			chart "Average time on road" type: series {
+//				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
+//			}
+//
+//		}
 
 		display "Edit Map" type: opengl {
 			overlay position: {4, 3} size: {100 #px, 30 #px} background: #black transparency: 0.1 border: #black rounded: true {
@@ -114,15 +114,6 @@ experiment show_example type: gui autorun: true {
 			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.79 triangulation: true;
 		}
 
-		//						display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
-		//						{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 5.0}
-		//						camera_up_vector: {0.0, 0.0, -1.0} {
-		//						//			grid cell elevation: grid_value triangulation: true refresh: false;
-		//							grid cell refresh: false;
-		//							species road refresh: false;
-		//							species building refresh: false;
-		//							species vehicle;
-		//						}
 
 	}
 

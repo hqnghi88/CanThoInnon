@@ -11,9 +11,9 @@ species vehicle skills: [moving] parent: moveable {
 	int nb_people;
 	bool go_work <- true;
 	string carburant <- "essence";
-	float wsize <- 7.0 + rnd(1);
-	float hsize <- 2.0 + rnd(2);
-	float depth <- 2.0 + rnd(2);
+	float wsize <- 12.0 + rnd(1);
+	float hsize <- 4.0 + rnd(2);
+	float depth <- 4.0 + rnd(2);
 	bool insane <- flip(0.00001) ? true : false;
 	float speed <- (insane ? 20 + rnd(20) : 10 + rnd(10.0)) °m / °h;
 	float csp <- speed;
