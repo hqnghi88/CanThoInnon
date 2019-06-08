@@ -1,7 +1,7 @@
 model Building
+
 import "Moveable.gaml"
 import "GlobalVariable.gaml"
-
 species building parent: moveable {
 	float depth;
 	string osm_name;
@@ -11,6 +11,14 @@ species building parent: moveable {
 	}
 
 	aspect default {
+		draw shape depth: depth color: #gray;
+		if (#zoom > 6 and osm_name index_of "osm_agent" != 0) {
+			draw osm_name anchor: #center font: regular color: #cyan at: {location.x, location.y, (depth + 1)} perspective: false;
+		}
+
+	}
+
+	aspect texture {
 		draw shape depth: depth color: #gray texture: [roof_texture.path, texture.path];
 		if (#zoom > 6 and osm_name index_of "osm_agent" != 0) {
 			draw osm_name anchor: #center font: regular color: #cyan at: {location.x, location.y, (depth + 1)} perspective: false;

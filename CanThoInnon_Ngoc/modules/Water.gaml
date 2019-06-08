@@ -19,7 +19,8 @@ species water {
 	}
 
 	aspect default {
-		draw shape color: #black at: location;
+		draw shape texture:("../images/water2.gif") color: #black at: location;
+		
 	}
 
 }

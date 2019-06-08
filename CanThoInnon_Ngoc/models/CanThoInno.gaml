@@ -35,10 +35,10 @@ global {
 			nbred <- 30 + rnd(20);
 			nbgreen <- 15 + rnd(20);
 		}
-//		 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
+		//		 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
 		create road from: road_shp {
 		}
-//			save road to:"../includes/nkRoadsSimple3.shp" type:"shp";
+		//			save road to:"../includes/nkRoadsSimple3.shp" type:"shp";
 		active_cells <- pollutant_grid where (!empty(road overlapping each));
 		ask active_cells {
 			active <- true;
@@ -59,24 +59,39 @@ global {
 
 	}
 
+	reflex ss {
+	//	write max(pollutant_grid collect each.pollution);
+	}
+
 }
 
-experiment show_example type: gui {
-//image_file static_map_request <-
-////		image_file("https://www.mapquestapi.com/staticmap/v4/getmap?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24&size=600,600&type=map&imagetype=jpg&zoom=16&scalebar=false&traffic=false&center=10.034734,105.783050");
-//		image_file("https://www.mapquestapi.com/staticmap/v4/getmap?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24&size=650,550&type=hyb&imagetype=jpg&zoom=16&scalebar=false&traffic=FLOW|CON|INC&center=10.035534,105.783550&xis=https://s.aolcdn.com/os/mapquest/yogi/icons/poi-active.png,1,c,40.015831,-105.27927&ellipse=fill:0x70ff0000|color:0xff0000|width:2|40.00,-105.25,40.04,-105.30");
-	
+experiment show_example type: gui autorun: true {
+
 	init {
 		gama.pref_display_show_referential <- false;
 		gama.pref_display_show_rotation <- false;
 	}
 
 	output {
-		layout #stack navigator: false editors: false consoles: false;
-	display "Edit Map" type: opengl {
-			overlay position: {4, 3} size: {180 #px, 20 #px} background: #black transparency: 0.1 border: #black rounded: true {
+		layout #stack navigator: false editors: false consoles: false tray: false toolbars: false tabs: true;
+		display "Statistic" {
+			chart "Number of critical pollution" type: series {
+				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
+			}
+
+		}
+
+		display "Statistic2" {
+			chart "Average time on road" type: series {
+				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
+			}
+
+		}
+
+		display "Edit Map" type: opengl {
+			overlay position: {4, 3} size: {100 #px, 30 #px} background: #black transparency: 0.1 border: #black rounded: true {
 				if (edit_mode) {
-					draw "Editing" at: {20 #px, 15 #px} color: #black border: #white;
+					draw "Editing" font: regular at: {20 #px, 20 #px} color: #black border: #white;
 				}
 
 			}
@@ -89,29 +104,16 @@ experiment show_example type: gui {
 			event mouse_up action: click;
 		}
 
-		display "Simulation result" type: opengl {
+		display "Simulation result" type: opengl camera_pos: {775.7492,1781.1727,386.618} camera_look_pos: {775.7492,943.9393,-199.5973} camera_up_vector: {0.0,0.5736,0.8192} {
 			species traffic_light;
-			species road refresh: false transparency: 0.5; // position: {0, 0, 0.002};
-			species building;
-			species vehicle; 
-			grid DEMcell texture:terrain elevation: subsidence / 10 position: {0, 0, -0.0085}  triangulation: true;
-			species water transparency: 0.29;
-			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.9 triangulation: true;
+			species road refresh: false transparency: 0.51; // position: {0, 0, 0.002};
+			species building aspect: texture;
+			species vehicle aspect: texture;
+			grid DEMcell texture: terrain elevation: subsidence / 10 position: {0, 0, -0.0085} triangulation: true;
+			species water transparency: 0.59;
+			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.79 triangulation: true;
 		}
 
-//		display "Statistic" {
-//			chart "Number of critical pollution" type: series {
-//				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
-//			}
-//
-//		}
-//
-//		display "Statistic2" {
-//			chart "Average time on road" type: series {
-//				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
-//			}
-//
-//		}
 		//						display FirstPerson type: opengl camera_interaction: false camera_pos: {int(first(vehicle).location.x), int(first(vehicle).location.y), 5.0} camera_look_pos:
 		//						{cos(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.x), sin(first(vehicle).heading) * first(vehicle).speed + int(first(vehicle).location.y), 5.0}
 		//						camera_up_vector: {0.0, 0.0, -1.0} {

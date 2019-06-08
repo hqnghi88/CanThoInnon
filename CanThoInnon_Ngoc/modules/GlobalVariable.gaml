@@ -41,7 +41,12 @@ global {
 	font regular <- font("Arial", 20, #bold);
 	float maxsub <- 147.0;
 
-	image_file terrain <- image_file("../images/terrain.png");
+	image_file terrain <- image_file("../images/terrain1.png");
+	image_file cartxt <- image_file("../images/car1.png");
+	image_file cartop <- image_file("../images/cartop.jpg");
+	image_file carside <- image_file("../images/carside.jpg");
+	image_file carfront <- image_file("../images/carfront.jpg");
+	image_file carback <- image_file("../images/carback.jpg");
 	//	geometry motor3d<-geometry(obj_file("../motor/Bike.obj"));
 }
 

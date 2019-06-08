@@ -9,7 +9,7 @@ species vehicle skills: [moving] parent: moveable {
 	rgb color;
 	string type;
 	int nb_people;
-	bool go_work<-true;
+	bool go_work <- true;
 	string carburant <- "essence";
 	float wsize <- 7.0 + rnd(1);
 	float hsize <- 2.0 + rnd(2);
@@ -23,10 +23,10 @@ species vehicle skills: [moving] parent: moveable {
 	point target <- nil;
 	rgb csd <- #green;
 	bool waiting_traffic_light <- false;
-	int time_on_road<-0;
+	int time_on_road <- 0;
 	float get_pollution {
 	//		write  csp * coeff_vehicle[type];
-		return csp * coeff_vehicle[type] * 100;
+		return csp * coeff_vehicle[type] * wsize * hsize * 10;
 	}
 
 	reflex move when: target != nil {
@@ -57,8 +57,8 @@ species vehicle skills: [moving] parent: moveable {
 
 		if ((first(water).wlevel > -13.30) and length(DEMcell overlapping self) > 0) {
 			if ((first(DEMcell overlapping self).subsidence < 30)) {
-				csd <- #black;
-				csp <-(rnd(5) °m / °h);
+				csd <- #black + 50;
+				csp <- (rnd(5) °m / °h);
 			} else {
 				csd <- #green;
 				csp <- speed;
@@ -66,35 +66,40 @@ species vehicle skills: [moving] parent: moveable {
 
 		}
 
-		time_on_road<-time_on_road+1;
+		time_on_road <- time_on_road + 1;
 		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
 		if (target != nil and location distance_to target <= speed) {
 		//		if (target = location){
 			target <- nil;
-			time_on_road<-0;
+			time_on_road <- 0;
 		}
 
 	}
 
 	reflex choose_target when: target = nil {
-//		target <- any_location_in(road_geom);
-		if(go_work){			
-			go_work<-false;
+	//		target <- any_location_in(road_geom);
+		if (go_work) {
+			go_work <- false;
 			target <- any_location_in(road_geom);
-		}else{
-			go_work<-true;
-			target <- any_location_in(any(building where(each.osm_name index_of "osm_agent" != 0)));
-			
+		} else {
+			go_work <- true;
+			target <- any_location_in(any(building where (each.osm_name index_of "osm_agent" != 0)));
 		}
-	}
 
-	aspect d3d {
-		draw obj_file("../motor/Bike.obj") size: 5 rotate: -90::{1, 0, 0};
 	}
 
 	aspect default {
-		draw box(wsize - 2, hsize, depth + 2) color: csd rotate: heading;
 		draw shape color: csd rotate: heading;
+	}
+
+	aspect texture {
+	//		draw box(wsize - 2, hsize, depth + 2) color: csd rotate: heading;
+		if (csd = #green) {
+			draw shape texture: [cartop, carside, carback, carfront] color: csd rotate: heading;
+		} else {
+			draw shape color: csd rotate: heading;
+		}
+
 		if (draw_perception and TL_area != nil) {
 			draw TL_area color: csd empty: true depth: 0.5;
 		}
