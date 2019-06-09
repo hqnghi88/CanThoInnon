@@ -49,14 +49,6 @@ global{
 
 	}
 
-	user_command "Enter edit mode" {
-		edit_mode <- true;
-	}
-
-	user_command "Exit edit mode" {
-		edit_mode <- false;
-	}
-
 	list<agent> get_all_instances (species<agent> spec) {
 		return spec.population + spec.subspecies accumulate (get_all_instances(each));
 	}

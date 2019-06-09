@@ -74,19 +74,19 @@ experiment show_example type: gui autorun: true {
 
 	output {
 		layout #stack navigator: false editors: false consoles: false tray: false toolbars: false tabs: true;
-//		display "Statistic" {
-//			chart "Number of critical pollution" type: series {
-//				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: false style: line;
-//			}
-//
-//		}
-//
-//		display "Statistic2" {
-//			chart "Average time on road" type: series {
-//				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: false style: line;
-//			}
-//
-//		}
+		display "Statistic" {
+			chart "Number of critical pollution" type: series {
+				data "pollution " value: length(pollutant_grid where (each.pollution > 0.01)) color: #red marker: true style: line;
+			}
+
+		}
+
+		display "Statistic2" {
+			chart "Average time on road" type: series {
+				data "time " value: median(vehicle collect (each.time_on_road)) color: #red marker: true style: line;
+			}
+
+		}
 
 		display "Edit Map" type: opengl {
 			overlay position: {4, 3} size: {100 #px, 30 #px} background: #black transparency: 0.1 border: #black rounded: true {
