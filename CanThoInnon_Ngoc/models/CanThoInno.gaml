@@ -38,6 +38,14 @@ global {
 		//		 	save traffic_light to:"../includes/nkNodesSimple2.shp" type:"shp";
 		create road from: road_shp {
 		}
+
+		ask road { 
+			//bidirectional: creation of the inverse road
+			create road {
+				shape <- polyline(reverse(myself.shape.points)); 
+			}
+
+		}
 		//			save road to:"../includes/nkRoadsSimple3.shp" type:"shp";
 		active_cells <- pollutant_grid where (!empty(road overlapping each));
 		ask active_cells {
@@ -45,8 +53,8 @@ global {
 		}
 
 		road_weights <- road as_map (each::each.shape.perimeter);
-		road_geom <- union(road accumulate (each.shape));
-		road_graph <- as_edge_graph(list(road));
+		//		road_geom <- union(road accumulate (each.shape));
+		road_graph <- directed(as_edge_graph(list(road)));
 		create building from: building_shp {
 			depth <- (10 + (rnd(20)) / 150 * shape.perimeter);
 			texture <- textures[rnd(9)];
@@ -54,7 +62,7 @@ global {
 
 		create vehicle number: nbvehicle {
 			type <- TYPE_MOTORBIKE;
-			location <- any_location_in(road_geom);
+			location <- any_location_in(any(road));
 		}
 
 	}
@@ -104,7 +112,8 @@ experiment show_example type: gui autorun: true {
 			event mouse_up action: click;
 		}
 
-		display "Simulation result" type: opengl camera_pos: {775.7492,1781.1727,386.618} camera_look_pos: {775.7492,943.9393,-199.5973} camera_up_vector: {0.0,0.5736,0.8192} {
+		display "Simulation result" synchronized: true type: opengl camera_pos: {775.7492, 1781.1727, 386.618} camera_look_pos: {775.7492, 943.9393, -199.5973} camera_up_vector:
+		{0.0, 0.5736, 0.8192} {
 			species traffic_light;
 			species road refresh: false transparency: 0.51; // position: {0, 0, 0.002};
 			species building aspect: texture;
@@ -113,7 +122,6 @@ experiment show_example type: gui autorun: true {
 			species water transparency: 0.59;
 			grid pollutant_grid elevation: (pollution * (10)) < 0 ? 0.0 : (pollution * (10)) transparency: 0.79 triangulation: true;
 		}
-
 
 	}
 

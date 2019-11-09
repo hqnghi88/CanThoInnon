@@ -19,7 +19,7 @@ global {
 	float min_value;
 	bool recompute_path <- false;
 	geometry road_geom;
-	int nbvehicle <- 150;
+	int nbvehicle <- 100;
 	map<road, float> road_weights;
 	list<moveable> moved_agents;
 	point mouse_target;

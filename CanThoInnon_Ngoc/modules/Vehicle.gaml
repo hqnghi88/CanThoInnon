@@ -11,13 +11,13 @@ species vehicle skills: [moving] parent: moveable {
 	int nb_people;
 	bool go_work <- true;
 	string carburant <- "essence";
-	float wsize <- 12.0 + rnd(1);
-	float hsize <- 4.0 + rnd(2);
-	float depth <- 4.0 + rnd(2);
+	float wsize <- (12.0 + rnd(1)) * 1;
+	float hsize <- (4.0 + rnd(2)) * 1;
+	float depth <- (4.0 + rnd(2)) * 1;
 	bool insane <- flip(0.00001) ? true : false;
-	float speed <- (insane ? 20 + rnd(20) : 10 + rnd(10.0)) °m / °h;
+	float speed <- ((insane ? 20 + rnd(20) : 10 + rnd(10.0)) °m / °h) *1;
 	float csp <- speed;
-	float perception_distance <- wsize * 4;
+	float perception_distance <- wsize * 1.5; //view size must be 1.5 times of my size
 	geometry shape <- box(wsize, hsize, depth);
 	geometry TL_area;
 	point target <- nil;
@@ -26,24 +26,37 @@ species vehicle skills: [moving] parent: moveable {
 	int time_on_road <- 0;
 	float get_pollution {
 	//		write  csp * coeff_vehicle[type];
-		return csp * coeff_vehicle[type] * wsize * hsize * 10;
+		return csp * coeff_vehicle[type] * wsize * hsize;
 	}
 
 	reflex move when: target != nil {
-		TL_area <- (cone(heading - 15, heading + 15) intersection world.shape) intersection (circle(perception_distance));
-		list<traffic_light> redlight <- (((traffic_light) at_distance perception_distance) where (each.color_fire = #red)) overlapping TL_area;
-		list<vehicle> v <- (vehicle at_distance (perception_distance)) where (!(each.TL_area overlaps TL_area) and (each overlaps TL_area));
+		time_on_road <- time_on_road + 1;
+		if(!waiting_traffic_light){			
+			do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
+		}
+		if (target != nil and location distance_to target <= speed) {
+		//		if (target = location){
+			target <- nil;
+			time_on_road <- 0;
+			return;
+		}
+
+		//		TL_area <- (cone(heading - 15, heading + 15) intersection world.shape) intersection (circle(perception_distance));
+		TL_area <- ((cone(heading - 10, heading + 10) intersection world.shape) intersection (circle(perception_distance)) - shape);
+		list<vehicle> v <- (((vehicle - self) at_distance (perception_distance))) where (each overlaps TL_area); //!(each.TL_area overlaps TL_area) and each.current_edge = self.current_edge and
+		list<traffic_light> redlight <- (((traffic_light) at_distance (perception_distance*2)) where (each.color_fire = #red)) overlapping TL_area;
+		//		list<vehicle> v <- (vehicle at_distance (perception_distance)) where (!(each.TL_area overlaps TL_area) and (each overlaps TL_area));
+		waiting_traffic_light <- false;
 		if (length(redlight) > 0) {
 			waiting_traffic_light <- true;
 			return;
 		}
 
-		if (!waiting_traffic_light and length(v where (each.waiting_traffic_light)) > 0) {
+		if (!waiting_traffic_light and length(v where (each.current_edge = current_edge and each.waiting_traffic_light)) > 0) {
 			waiting_traffic_light <- true;
 			return;
 		}
 
-		waiting_traffic_light <- false;
 		if (length(v) > 0) {
 			csd <- #darkred;
 			if (csp = speed) {
@@ -64,14 +77,6 @@ species vehicle skills: [moving] parent: moveable {
 				csp <- speed;
 			}
 
-		}
-
-		time_on_road <- time_on_road + 1;
-		do goto target: target on: road_graph recompute_path: recompute_path speed: csp move_weights: road_weights;
-		if (target != nil and location distance_to target <= speed) {
-		//		if (target = location){
-			target <- nil;
-			time_on_road <- 0;
 		}
 
 	}
