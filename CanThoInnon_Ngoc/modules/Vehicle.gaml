@@ -47,15 +47,11 @@ species vehicle skills: [moving] parent: moveable {
 		list<traffic_light> redlight <- (((traffic_light) at_distance (perception_distance*2)) where (each.color_fire = #red)) overlapping TL_area;
 		//		list<vehicle> v <- (vehicle at_distance (perception_distance)) where (!(each.TL_area overlaps TL_area) and (each overlaps TL_area));
 		waiting_traffic_light <- false;
-		if (length(redlight) > 0) {
+		if (length(redlight) > 0  or (length(v where (each.current_edge = current_edge and each.waiting_traffic_light)) > 0)) {
 			waiting_traffic_light <- true;
 			return;
 		}
-
-		if (!waiting_traffic_light and length(v where (each.current_edge = current_edge and each.waiting_traffic_light)) > 0) {
-			waiting_traffic_light <- true;
-			return;
-		}
+ 
 
 		if (length(v) > 0) {
 			csd <- #darkred;
