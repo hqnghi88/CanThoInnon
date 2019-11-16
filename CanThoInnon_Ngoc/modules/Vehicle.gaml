@@ -11,8 +11,8 @@ species vehicle skills: [moving] parent: moveable {
 	int nb_people;
 	bool go_work <- true;
 	string carburant <- "essence";
-	float wsize <- (12.0 + rnd(1)) * 1;
-	float hsize <- (4.0 + rnd(2)) * 1;
+	float wsize <- (14.0 + rnd(1)) * 1;
+	float hsize <- (6.0 + rnd(2)) * 1;
 	float depth <- (4.0 + rnd(2)) * 1;
 	bool insane <- flip(0.00001) ? true : false;
 	float speed <- ((insane ? 20 + rnd(20) : 10 + rnd(10.0)) °m / °h) *1;
@@ -26,7 +26,7 @@ species vehicle skills: [moving] parent: moveable {
 	int time_on_road <- 0;
 	float get_pollution {
 	//		write  csp * coeff_vehicle[type];
-		return csp * coeff_vehicle[type] * wsize * hsize;
+		return csp * coeff_vehicle[type] * wsize * hsize*1.2;
 	}
 
 	reflex move when: target != nil {
@@ -54,7 +54,7 @@ species vehicle skills: [moving] parent: moveable {
  
 
 		if (length(v) > 0) {
-			csd <- #darkred;
+//			csd <- #darkred;
 			if (csp = speed) {
 				csp <- (v min_of each.csp);
 			}
