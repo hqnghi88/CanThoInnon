@@ -8,10 +8,12 @@ model Corona
 
 global {
 	float seed<-0.5362681362380473;
+	
+	int max_exposed_period <- 30;
 	init {
 	//		create obstacle number:10;
 		create people number: 100 {
-			masked <- flip(0.8) ? true : false;
+//			masked <- flip(0.8) ? true : false;
 		}
 
 		ask 1 among (people) {
@@ -66,9 +68,9 @@ species people parent: virus_container skills: [moving] {
 
 
 	reflex spreading_virus when: exposed or infected {
-		ask ((people at_distance 3) where (!each.exposed and !each.infected)) {
+		ask ((people at_distance 2) where (!each.exposed and !each.infected)) {
 			exposed <- masked ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
-			exposed_period<-5+rnd(30);
+			exposed_period<-rnd(max_exposed_period);
 			infected_period<-1+rnd(10);
 		}
 
