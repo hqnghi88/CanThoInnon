@@ -14,7 +14,7 @@ global {
 	geometry shape <- envelope(building_shapefile);
 	int max_exposed_period <- 30;
 	list<string>
-	schoolname <- ["Tieu hoc Mac Dinh Chi", "Trường THPT Châu Văn Liêm", "THPT BC Phạm Ngọc Hiển", "Trường THCS Đoàn Thị Điểm", "Ngô Quyền", "Mầm non Tây Đô", "Trung Tâm Giáo Dục Thường Xuyên"];
+	schoolname <- ["Tieu hoc Mac Dinh Chi", "TrÆ°á»ng THPT ChÃ¢u VÄƒn LiÃªm", "THPT BC Pháº¡m Ngá»c Hiá»ƒn", "TrÆ°á»ng THCS ÄoÃ n Thá»‹ Äiá»ƒm", "NgÃ´ Quyá»n", "Máº§m non TÃ¢y ÄÃ´", "Trung TÃ¢m GiÃ¡o Dá»¥c ThÆ°á»ng XuyÃªn"];
 	graph road_network;
 	bool off_school;
 	map<string, float> profiles <- ["poor"::0.3, "medium"::0.4, "standard"::0.2, "rich"::0.1]; //	map<string,float> profiles <- ["innovator"::0.0,"early_adopter"::0.1,"early_majority"::0.2,"late_majority"::0.3, "laggard"::0.5];
@@ -54,7 +54,7 @@ global {
 species road {
 
 	aspect default {
-		draw shape + 2 color: #black empty: true;
+		draw shape color: #gray empty: true;
 	}
 
 }
@@ -119,7 +119,7 @@ species people parent: virus_container skills: [moving] {
 
 	reflex spreading_virus when: (exposed or infected) and (state != "visiting") {
 		ask ((people at_distance (size * 2)) where (!each.exposed and !each.infected)) {
-			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
+			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.1) ? true : false);
 			exposed_period <- rnd(max_exposed_period);
 			infected_period <- 1 + rnd(10);
 		}
@@ -129,7 +129,7 @@ species people parent: virus_container skills: [moving] {
 	reflex living when: state = "wander" {
 		do wander speed: spd bounds: my_bound;
 		if (off_school) {
-			if (flip(0.001)) {
+			if (flip(0.01)) {
 				if (flip(0.01)) {
 					state <- "moving";
 					my_friend <- any((people - self) where (each.state = "wander" and each.my_bound = my_bound));
