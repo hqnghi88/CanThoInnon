@@ -119,7 +119,7 @@ species people parent: virus_container skills: [moving] {
 
 	reflex spreading_virus when: (exposed or infected) and (state != "visiting") {
 		ask ((people at_distance (size * 2)) where (!each.exposed and !each.infected)) {
-			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.1) ? true : false);
+			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
 			exposed_period <- rnd(max_exposed_period);
 			infected_period <- 1 + rnd(10);
 		}
@@ -129,7 +129,7 @@ species people parent: virus_container skills: [moving] {
 	reflex living when: state = "wander" {
 		do wander speed: spd bounds: my_bound;
 		if (off_school) {
-			if (flip(0.01)) {
+			if (flip(0.005)) {
 				if (flip(0.01)) {
 					state <- "moving";
 					my_friend <- any((people - self) where (each.state = "wander" and each.my_bound = my_bound));
@@ -152,7 +152,7 @@ species people parent: virus_container skills: [moving] {
 			}
 
 		} else {
-			if (flip(0.01)) {
+			if (flip(0.05)) {
 				state <- "moving";
 				my_friend <- any((people - self) where (each.state = "wander" and each.my_bound = my_bound));
 				if (my_friend = nil) {
