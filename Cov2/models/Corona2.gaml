@@ -36,7 +36,7 @@ global {
 			//			masked <- flip(0.8) ? true : false;
 		}
 
-		ask 900 among people {
+		ask 800 among people {
 			masked <- true;
 		}
 
@@ -51,7 +51,7 @@ global {
 species road {
 
 	aspect default {
-		draw shape+2 color: #black empty:true;
+		draw shape color: #black;
 	}
 
 }
@@ -65,7 +65,7 @@ species building parent: virus_container {
 	bool is_school <- false;
 
 	aspect default {
-		draw shape color: is_school ? #blue : #gray empty: true ;
+		draw shape color: is_school ? #blue : #gray empty: is_school ? true : false;
 	}
 
 }
@@ -80,10 +80,9 @@ species people parent: virus_container skills: [moving] {
 	people my_friend <- nil;
 	geometry my_bound;
 	point my_target <- nil;
-	string state <- "wander";
-	//	bool moving <- false;
-	//	bool visiting <- false;
-	//	bool making_conversation <- false;
+	bool moving <- false;
+	bool visiting <- false;
+	bool making_conversation <- false;
 	bool masked <- false;
 	bool at_school <- false;
 	int exposed_period <- 14;
@@ -114,25 +113,25 @@ species people parent: virus_container skills: [moving] {
 
 	}
 
-	reflex spreading_virus when: (exposed or infected) and(state!="visiting"){
+	reflex spreading_virus when: exposed or infected {
 		ask ((people at_distance (size * 2)) where (!each.exposed and !each.infected)) {
-			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
+			exposed <- masked ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
 			exposed_period <- rnd(max_exposed_period);
 			infected_period <- 1 + rnd(10);
 		}
 
 	}
 
-	reflex living when: state = "wander" {
+	reflex living when: !moving {
 		do wander speed: spd bounds: my_bound;
 		if (off_school) {
 			if (flip(0.001)) {
 				if (flip(0.01)) {
-					state <- "moving";
-					my_friend <- any((people - self) where (each.state != "moving" and (my_building overlaps each)));
+					moving <- true;
+					my_friend <- any((people - self) where (!each.moving and (my_building overlaps each)));
 				} else {
 					if (!infected) {
-						state <- "visiting";
+						visiting <- true;
 						my_target <- any_location_in(any(building where (!each.is_school)));
 					}
 
@@ -142,22 +141,22 @@ species people parent: virus_container skills: [moving] {
 
 		} else {
 			if (flip(0.01)) {
-				state <- "moving";
-				my_friend <- any((people - self) where (each.state != "moving" and (my_bound overlaps each)));
+				moving <- true;
+				my_friend <- any((people - self) where (!each.moving and (my_bound overlaps each)));
 				if (my_friend = nil) {
-					state <- "wander";
+					moving <- false;
 				}
 
 			} else {
 				if (at_school) {
 					if (flip(0.0005)) {
-						state <- "visiting";
+						visiting <- true;
 						my_target <- any_location_in(my_building);
 					}
 
 				} else {
 					if (flip(0.05)) {
-						state <- "visiting";
+						visiting <- true;
 						my_target <- any_location_in(my_school);
 					}
 
@@ -169,10 +168,10 @@ species people parent: virus_container skills: [moving] {
 
 	}
 
-	reflex visit when: state = "visiting" {
-		do goto target: my_target on: road_network speed: 50.0;
-		if (location distance_to my_target < (size * 2)) {
-			state <- "wander";
+	reflex visit when: visiting {
+		do goto target: my_target on: road_network speed: 10.0;
+		if (location = my_target) {
+			visiting <- false;
 			if (!off_school) {
 				at_school <- !at_school;
 				my_bound <- my_building.shape;
@@ -186,18 +185,16 @@ species people parent: virus_container skills: [moving] {
 
 	}
 
-	reflex moving when: state = "moving" {
+	reflex moving when: moving {
 		do goto target: my_friend.location speed: 10.0;
 		if (location distance_to my_friend < (size * 2)) {
-			state <- "wander";
+			moving <- false;
+			making_conversation <- false;
 		}
 
 	}
 
 	aspect default {
-		if(state="visiting"){
-			draw line([location,my_target]) color:#gray;
-		}
 		draw shape color: exposed ? #pink : (infected ? #red : #green);
 	}
 
@@ -206,7 +203,7 @@ species people parent: virus_container skills: [moving] {
 experiment sim {
 	parameter "OFF SCHOOL" var: off_school <- true category: "Education planning";
 	output {
-		layout horizontal([0::6321, 1::3679]) tabs: true editors: false;
+		layout horizontal([0::6740, 1::3260]) tabs: true editors: false;
 		display "d1" synchronized: false {
 			species road refresh: false;
 			species building;
