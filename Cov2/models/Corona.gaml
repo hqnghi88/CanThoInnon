@@ -17,7 +17,7 @@ global {
 	schoolname <- ["Tieu hoc Mac Dinh Chi", "Trường THPT Châu Văn Liêm", "THPT BC Phạm Ngọc Hiển", "Trường THCS Đoàn Thị Điểm", "Ngô Quyền", "Mầm non Tây Đô", "Trung Tâm Giáo Dục Thường Xuyên"];
 	graph road_network;
 	bool off_school;
-
+	map<string, float> profiles <- ["poor"::0.3, "medium"::0.4, "standard"::0.2, "rich"::0.1]; //	map<string,float> profiles <- ["innovator"::0.0,"early_adopter"::0.1,"early_majority"::0.2,"late_majority"::0.3, "laggard"::0.5];
 	init {
 		create road from: road_shapefile;
 		road_network <- as_edge_graph(road);
@@ -28,8 +28,11 @@ global {
 
 		}
 
+		list sch <- (building where (each.is_school))sort (-each.shape.area);
+		float total <- sum(sch collect each.shape.area);
+		list idx<- sch  collect (each.shape.area / total);
 		create people number: 1000 {
-			my_school <- any(building where (each.is_school));
+			my_school <- sch[rnd_choice(idx)];// any(building where (each.is_school));
 			my_building <- any(building where (!each.is_school));
 			location <- any_location_in(my_building);
 			my_bound <- my_building.shape;
@@ -51,7 +54,7 @@ global {
 species road {
 
 	aspect default {
-		draw shape+2 color: #black empty:true;
+		draw shape + 2 color: #black empty: true;
 	}
 
 }
@@ -65,7 +68,7 @@ species building parent: virus_container {
 	bool is_school <- false;
 
 	aspect default {
-		draw shape color: is_school ? #blue : #gray empty: true ;
+		draw shape color: is_school ? #blue : #gray empty: true;
 	}
 
 }
@@ -114,7 +117,7 @@ species people parent: virus_container skills: [moving] {
 
 	}
 
-	reflex spreading_virus when: (exposed or infected) and(state!="visiting"){
+	reflex spreading_virus when: (exposed or infected) and (state != "visiting") {
 		ask ((people at_distance (size * 2)) where (!each.exposed and !each.infected)) {
 			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
 			exposed_period <- rnd(max_exposed_period);
@@ -129,11 +132,19 @@ species people parent: virus_container skills: [moving] {
 			if (flip(0.001)) {
 				if (flip(0.01)) {
 					state <- "moving";
-					my_friend <- any((people - self) where (each.state != "moving" and (my_building overlaps each)));
+					my_friend <- any((people - self) where (each.state = "wander" and each.my_bound = my_bound));
+					if (my_friend = nil) {
+						state <- "wander";
+					} else {
+						my_target <- my_friend.location;
+					}
+
 				} else {
 					if (!infected) {
 						state <- "visiting";
-						my_target <- any_location_in(any(building where (!each.is_school)));
+						my_building <- any(building where (!each.is_school));
+						my_bound <- my_building.shape;
+						my_target <- any_location_in(my_building);
 					}
 
 				}
@@ -143,21 +154,25 @@ species people parent: virus_container skills: [moving] {
 		} else {
 			if (flip(0.01)) {
 				state <- "moving";
-				my_friend <- any((people - self) where (each.state != "moving" and (my_bound overlaps each)));
+				my_friend <- any((people - self) where (each.state = "wander" and each.my_bound = my_bound));
 				if (my_friend = nil) {
 					state <- "wander";
+				} else {
+					my_target <- my_friend.location;
 				}
 
 			} else {
 				if (at_school) {
 					if (flip(0.0005)) {
 						state <- "visiting";
+						my_bound <- my_building.shape;
 						my_target <- any_location_in(my_building);
 					}
 
 				} else {
 					if (flip(0.05)) {
 						state <- "visiting";
+						my_bound <- my_school.shape;
 						my_target <- any_location_in(my_school);
 					}
 
@@ -173,31 +188,22 @@ species people parent: virus_container skills: [moving] {
 		do goto target: my_target on: road_network speed: 50.0;
 		if (location distance_to my_target < (size * 2)) {
 			state <- "wander";
-			if (!off_school) {
-				at_school <- !at_school;
-				my_bound <- my_building.shape;
-				if (at_school) {
-					my_bound <- my_school.shape;
-				}
-
-			}
-
 		}
 
 	}
 
 	reflex moving when: state = "moving" {
-		do goto target: my_friend.location speed: 10.0;
-		if (location distance_to my_friend < (size * 2)) {
+		do goto target: my_target speed: 10.0;
+		if (location distance_to my_target < (size * 2)) {
 			state <- "wander";
 		}
 
 	}
 
 	aspect default {
-		if(state="visiting"){
-			draw line([location,my_target]) color:#gray;
-		}
+	//		if (state = "visiting" or state = "moving") {
+	//			draw line([location, my_target]) color: #gray;
+	//		}
 		draw shape color: exposed ? #pink : (infected ? #red : #green);
 	}
 
