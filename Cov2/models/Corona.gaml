@@ -28,18 +28,18 @@ global {
 
 		}
 
-		list sch <- (building where (each.is_school))sort (-each.shape.area);
+		list sch <- (building where (each.is_school)) sort (-each.shape.area);
 		float total <- sum(sch collect each.shape.area);
-		list idx<- sch  collect (each.shape.area / total);
+		list idx <- sch collect (each.shape.area / total);
 		create people number: 1000 {
-			my_school <- sch[rnd_choice(idx)];// any(building where (each.is_school));
+			my_school <- sch[rnd_choice(idx)]; // any(building where (each.is_school));
 			my_building <- any(building where (!each.is_school));
 			location <- any_location_in(my_building);
 			my_bound <- my_building.shape;
 			//			masked <- flip(0.8) ? true : false;
 		}
 
-		ask 900 among people {
+		ask 500 among people {
 			masked <- true;
 		}
 
@@ -60,8 +60,10 @@ species road {
 }
 
 species virus_container {
+	bool susceptible <- true;
 	bool infected <- false;
 	bool exposed <- false;
+	bool recovered <- false;
 }
 
 species building parent: virus_container {
@@ -77,7 +79,7 @@ species building parent: virus_container {
 //}
 species people parent: virus_container skills: [moving] {
 	float spd <- 1.0;
-	int size <- 1;
+	float size <- 1.0;
 	building my_building <- nil;
 	building my_school <- nil;
 	people my_friend <- nil;
@@ -111,6 +113,7 @@ species people parent: virus_container skills: [moving] {
 				cnt <- 0;
 				exposed <- false;
 				infected <- false;
+				recovered <- true;
 			}
 
 		}
@@ -118,10 +121,14 @@ species people parent: virus_container skills: [moving] {
 	}
 
 	reflex spreading_virus when: (exposed or infected) and (state != "visiting") {
-		ask ((people at_distance (size * 2)) where (!each.exposed and !each.infected)) {
-			exposed <- (masked) ? (flip(0.001) ? true : false) : (flip(0.5) ? true : false);
-			exposed_period <- rnd(max_exposed_period);
-			infected_period <- 1 + rnd(10);
+		ask ((people at_distance (size * 2)) where (each.susceptible and !each.recovered)) {
+			exposed <- (masked or at_school) ? (flip(0.01) ? true : false) : (flip(0.5) ? true : false);
+			if (exposed) {
+				susceptible <- false;
+				exposed_period <- rnd(max_exposed_period);
+				infected_period <- 1 + rnd(10);
+			}
+
 		}
 
 	}
@@ -212,7 +219,7 @@ species people parent: virus_container skills: [moving] {
 experiment sim {
 	parameter "OFF SCHOOL" var: off_school <- true category: "Education planning";
 	output {
-		layout horizontal([0::6321, 1::3679]) tabs: true editors: false;
+		 layout horizontal([0::6321,1::3679]) tabs:true editors: false;
 		display "d1" synchronized: false {
 			species road refresh: false;
 			species building;
@@ -221,8 +228,9 @@ experiment sim {
 
 		display "chart" {
 			chart "sir" background: #white axes: #black {
-				data "susceptible" value: length(people where (!each.exposed and !each.infected)) color: #green marker: false style: line;
+				data "susceptible" value: length(people where (each.susceptible)) color: #green marker: false style: line;
 				data "infected" value: length(people where (each.exposed or each.infected)) color: #red marker: false style: line;
+				data "recovered" value: length(people where (each.recovered)) color: #blue marker: false style: line;
 			}
 
 		}
