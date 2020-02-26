@@ -17,6 +17,7 @@ global {
 	schoolname <- ["Tieu hoc Mac Dinh Chi", "TrÆ°á»ng THPT ChÃ¢u VÄƒn LiÃªm", "THPT BC Pháº¡m Ngá»c Hiá»ƒn", "TrÆ°á»ng THCS ÄoÃ n Thá»‹ Äiá»ƒm", "NgÃ´ Quyá»n", "Máº§m non TÃ¢y ÄÃ´", "Trung TÃ¢m GiÃ¡o Dá»¥c ThÆ°á»ng XuyÃªn"];
 	graph road_network;
 	bool off_school;
+	int dead<-0;
 	map<string, float> profiles <- ["poor"::0.3, "medium"::0.4, "standard"::0.2, "rich"::0.1]; //	map<string,float> profiles <- ["innovator"::0.0,"early_adopter"::0.1,"early_majority"::0.2,"late_majority"::0.3, "laggard"::0.5];
 	init {
 		create road from: road_shapefile;
@@ -96,7 +97,7 @@ species people parent: virus_container skills: [moving] {
 	int cnt <- 0;
 	geometry shape <- circle(size);
 
-	reflex epidemic {
+	reflex epidemic when:state!="visiting"{
 		if (exposed) {
 			cnt <- cnt + 1;
 			if (cnt >= exposed_period * 20) {
@@ -110,10 +111,15 @@ species people parent: virus_container skills: [moving] {
 		if (infected) {
 			cnt <- cnt + 1;
 			if (cnt >= infected_period * 20) {
-				cnt <- 0;
-				exposed <- false;
-				infected <- false;
-				recovered <- true;
+				if(flip(0.98)){					
+					cnt <- 0;
+					exposed <- false;
+					infected <- false;
+					recovered <- true;
+				}else{
+					dead<-dead+1;
+					do die;
+				}
 			}
 
 		}
@@ -122,7 +128,7 @@ species people parent: virus_container skills: [moving] {
 
 	reflex spreading_virus when: (exposed or infected) and (state != "visiting") {
 		ask ((people at_distance (size * 2)) where (each.susceptible and !each.recovered)) {
-			exposed <- (masked or at_school) ? (flip(0.01) ? true : false) : (flip(0.5) ? true : false);
+			exposed <- (masked) ? (flip(0.01) ? true : false) : (flip(0.5) ? true : false);
 			if (exposed) {
 				susceptible <- false;
 				exposed_period <- rnd(max_exposed_period);
@@ -192,7 +198,7 @@ species people parent: virus_container skills: [moving] {
 	}
 
 	reflex visit when: state = "visiting" {
-		do goto target: my_target on: road_network speed: 50.0;
+		do goto target: my_target on: road_network speed: 10.0;
 		if (location distance_to my_target < (size * 2)) {
 			state <- "wander";
 		}
@@ -231,6 +237,7 @@ experiment sim {
 				data "susceptible" value: length(people where (each.susceptible)) color: #green marker: false style: line;
 				data "infected" value: length(people where (each.exposed or each.infected)) color: #red marker: false style: line;
 				data "recovered" value: length(people where (each.recovered)) color: #blue marker: false style: line;
+				data "dead" value: dead color: #black marker: false style: line;
 			}
 
 		}
