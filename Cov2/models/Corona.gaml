@@ -32,7 +32,7 @@ global {
 		list sch <- (building where (each.is_school)) sort (-each.shape.area);
 		float total <- sum(sch collect each.shape.area);
 		list idx <- sch collect (each.shape.area / total);
-		create people number: 1000 {
+		create people number: 100 {
 			my_school <- sch[rnd_choice(idx)]; // any(building where (each.is_school));
 			my_building <- any(building where (!each.is_school));
 			location <- any_location_in(my_building);
@@ -40,7 +40,7 @@ global {
 			//			masked <- flip(0.8) ? true : false;
 		}
 
-		ask 500 among people {
+		ask 50 among people {
 			masked <- true;
 		}
 
@@ -71,6 +71,7 @@ species building parent: virus_container {
 	bool is_school <- false;
 
 	aspect default {
+//		draw name color:#black;
 		draw shape color: is_school ? #blue : #gray empty: true;
 	}
 
@@ -80,7 +81,7 @@ species building parent: virus_container {
 //}
 species people parent: virus_container skills: [moving] {
 	float spd <- 1.0;
-	float size <- 1.0;
+	float size <- 5.0;
 	building my_building <- nil;
 	building my_school <- nil;
 	people my_friend <- nil;
